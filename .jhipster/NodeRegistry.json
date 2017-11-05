@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "ip",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nodeId",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20171104201348",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "node_registry",
+    "jpaMetamodelFiltering": true,
+    "pagination": "infinite-scroll"
+}

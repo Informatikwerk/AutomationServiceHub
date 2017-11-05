@@ -1,0 +1,22 @@
+{
+    "espBrokerApp": {
+        "nodeRegistry" : {
+            "home": {
+                "title": "Node Registries",
+                "createLabel": "Create a new Node Registry",
+                "createOrEditLabel": "Create or edit a Node Registry"
+            },
+            "created": "A new Node Registry is created with identifier {{ param }}",
+            "updated": "A Node Registry is updated with identifier {{ param }}",
+            "deleted": "A Node Registry is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Node Registry {{ id }}?"
+            },
+            "detail": {
+                "title": "Node Registry"
+            },
+            "ip": "Ip",
+            "nodeId": "Node Id"
+        }
+    }
+}
