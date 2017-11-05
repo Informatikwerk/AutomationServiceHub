@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ######################
 # Project Specific
 ######################
@@ -140,6 +139,5 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
-=======
 # Add any directories, files, or patterns you don't want to be tracked by version control
 >>>>>>> 1ad94224bb7f2a8d181f1104b6d2a62d90279efd
