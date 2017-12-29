@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "ip",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nodeId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "realmKey",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171229105240",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "node_registry",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,23 @@
+{
+    "automationServiceHubApp": {
+        "nodeRegistry" : {
+            "home": {
+                "title": "Node Registries",
+                "createLabel": "Node Registry erstellen",
+                "createOrEditLabel": "Node Registry erstellen oder bearbeiten"
+            },
+            "created": "Node Registry erstellt mit ID {{ param }}",
+            "updated": "Node Registry aktualisiert mit ID {{ param }}",
+            "deleted": "Node Registry gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Node Registry {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Node Registry"
+            },
+            "ip": "Ip",
+            "nodeId": "Node Id",
+            "realmKey": "Realm Key"
+        }
+    }
+}
