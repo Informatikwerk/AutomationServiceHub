@@ -584,6 +584,7 @@
                 </executions>
             </plugin>
             
+            
             <!-- jhipster-needle-maven-add-plugin -->
         </plugins>
         <pluginManagement>

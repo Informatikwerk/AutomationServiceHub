@@ -101,7 +101,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/profile-info").permitAll()
-            .antMatchers("/api/**").authenticated()
+            .antMatchers("/api/**").permitAll()
             .antMatchers("/websocket/tracker").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/websocket/**").permitAll()
             .antMatchers("/management/health").permitAll()
@@ -109,6 +109,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/v2/api-docs/**").permitAll()
             .antMatchers("/swagger-resources/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
+            
         .and()
             .apply(securityConfigurerAdapter());
 

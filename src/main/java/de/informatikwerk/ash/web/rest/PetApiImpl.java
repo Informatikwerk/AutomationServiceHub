@@ -22,7 +22,7 @@ import de.informatikwerk.ash.web.rest.util.PaginationUtil;
 @RequestMapping("/api")
 public class PetApiImpl implements PetApi {
 
-	@GetMapping("/pets")
+	@GetMapping("/api/findByStatus2")
     @Timed
 	public ResponseEntity<List<Pet>> findPetsByStatus(List<String> status) {
 		// TODO Auto-generated method stub

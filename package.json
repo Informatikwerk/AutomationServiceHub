@@ -65,5 +65,8 @@
   },
   "scripts": {
     "test": "gulp test"
+  },
+  "dependencies": {
+    "generator-jhipster-swagger-api-first": "^1.0.1"
   }
 }
