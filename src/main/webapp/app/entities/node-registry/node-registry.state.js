@@ -107,6 +107,7 @@
                                 ip: null,
                                 nodeId: null,
                                 realmKey: null,
+                                type: null,
                                 id: null
                             };
                         }

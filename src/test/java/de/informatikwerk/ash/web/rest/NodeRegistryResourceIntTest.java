@@ -47,6 +47,9 @@ public class NodeRegistryResourceIntTest {
     private static final String DEFAULT_REALM_KEY = "AAAAAAAAAA";
     private static final String UPDATED_REALM_KEY = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_TYPE = "BBBBBBBBBB";
+
     @Autowired
     private NodeRegistryRepository nodeRegistryRepository;
 
@@ -87,7 +90,8 @@ public class NodeRegistryResourceIntTest {
         NodeRegistry nodeRegistry = new NodeRegistry()
             .ip(DEFAULT_IP)
             .nodeId(DEFAULT_NODE_ID)
-            .realmKey(DEFAULT_REALM_KEY);
+            .realmKey(DEFAULT_REALM_KEY)
+            .type(DEFAULT_TYPE);
         return nodeRegistry;
     }
 
@@ -114,6 +118,7 @@ public class NodeRegistryResourceIntTest {
         assertThat(testNodeRegistry.getIp()).isEqualTo(DEFAULT_IP);
         assertThat(testNodeRegistry.getNodeId()).isEqualTo(DEFAULT_NODE_ID);
         assertThat(testNodeRegistry.getRealmKey()).isEqualTo(DEFAULT_REALM_KEY);
+        assertThat(testNodeRegistry.getType()).isEqualTo(DEFAULT_TYPE);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class NodeRegistryResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(nodeRegistry.getId().intValue())))
             .andExpect(jsonPath("$.[*].ip").value(hasItem(DEFAULT_IP.toString())))
             .andExpect(jsonPath("$.[*].nodeId").value(hasItem(DEFAULT_NODE_ID.toString())))
-            .andExpect(jsonPath("$.[*].realmKey").value(hasItem(DEFAULT_REALM_KEY.toString())));
+            .andExpect(jsonPath("$.[*].realmKey").value(hasItem(DEFAULT_REALM_KEY.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
     }
 
     @Test
@@ -164,7 +170,8 @@ public class NodeRegistryResourceIntTest {
             .andExpect(jsonPath("$.id").value(nodeRegistry.getId().intValue()))
             .andExpect(jsonPath("$.ip").value(DEFAULT_IP.toString()))
             .andExpect(jsonPath("$.nodeId").value(DEFAULT_NODE_ID.toString()))
-            .andExpect(jsonPath("$.realmKey").value(DEFAULT_REALM_KEY.toString()));
+            .andExpect(jsonPath("$.realmKey").value(DEFAULT_REALM_KEY.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
     }
 
     @Test
@@ -189,7 +196,8 @@ public class NodeRegistryResourceIntTest {
         updatedNodeRegistry
             .ip(UPDATED_IP)
             .nodeId(UPDATED_NODE_ID)
-            .realmKey(UPDATED_REALM_KEY);
+            .realmKey(UPDATED_REALM_KEY)
+            .type(UPDATED_TYPE);
 
         restNodeRegistryMockMvc.perform(put("/api/node-registries")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -203,6 +211,7 @@ public class NodeRegistryResourceIntTest {
         assertThat(testNodeRegistry.getIp()).isEqualTo(UPDATED_IP);
         assertThat(testNodeRegistry.getNodeId()).isEqualTo(UPDATED_NODE_ID);
         assertThat(testNodeRegistry.getRealmKey()).isEqualTo(UPDATED_REALM_KEY);
+        assertThat(testNodeRegistry.getType()).isEqualTo(UPDATED_TYPE);
     }
 
     @Test

@@ -13,11 +13,16 @@
         {
             "fieldName": "realmKey",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20171229105240",
     "dto": "no",
     "service": "no",
     "entityTableName": "node_registry",
+    "jpaMetamodelFiltering": false,
     "pagination": "infinite-scroll"
 }

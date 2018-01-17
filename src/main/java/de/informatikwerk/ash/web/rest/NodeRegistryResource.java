@@ -78,6 +78,9 @@ public class NodeRegistryResource {
             return createNodeRegistry(nodeRegistry);
         } else if( tmpNodeRegistry!=null) {
         	tmpNodeRegistry.setIp(nodeRegistry.getIp());
+        	tmpNodeRegistry.setNodeId(nodeRegistry.getNodeId());
+        	tmpNodeRegistry.setRealmKey(nodeRegistry.getRealmKey());
+        	tmpNodeRegistry.setType(nodeRegistry.getType());
         	nodeRegistry = tmpNodeRegistry;
         }
         NodeRegistry result = nodeRegistryRepository.save(nodeRegistry);

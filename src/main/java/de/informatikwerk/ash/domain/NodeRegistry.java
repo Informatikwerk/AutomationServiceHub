@@ -28,6 +28,9 @@ public class NodeRegistry implements Serializable {
     @Column(name = "realm_key")
     private String realmKey;
 
+    @Column(name = "jhi_type")
+    private String type;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -75,6 +78,19 @@ public class NodeRegistry implements Serializable {
     public void setRealmKey(String realmKey) {
         this.realmKey = realmKey;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public NodeRegistry type(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -104,6 +120,7 @@ public class NodeRegistry implements Serializable {
             ", ip='" + getIp() + "'" +
             ", nodeId='" + getNodeId() + "'" +
             ", realmKey='" + getRealmKey() + "'" +
+            ", type='" + getType() + "'" +
             "}";
     }
 }
