@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="automationServiceHubApp.gui.detail.title">Gui</span> {{vm.gui.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="automationServiceHubApp.gui.type">Type</span></dt>
+        <dd>
+            <span>{{vm.gui.type}}</span>
+        </dd>
+        <dt><span data-translate="automationServiceHubApp.gui.jsFile">Js File</span></dt>
+        <dd>
+            <span>{{vm.gui.jsFile}}</span>
+        </dd>
+        <dt><span data-translate="automationServiceHubApp.gui.htmlFile">Html File</span></dt>
+        <dd>
+            <span>{{vm.gui.htmlFile}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="gui-detail.edit({id:vm.gui.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

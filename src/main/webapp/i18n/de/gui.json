@@ -1,0 +1,23 @@
+{
+    "automationServiceHubApp": {
+        "gui" : {
+            "home": {
+                "title": "Guis",
+                "createLabel": "Gui erstellen",
+                "createOrEditLabel": "Gui erstellen oder bearbeiten"
+            },
+            "created": "Gui erstellt mit ID {{ param }}",
+            "updated": "Gui aktualisiert mit ID {{ param }}",
+            "deleted": "Gui gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Gui {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Gui"
+            },
+            "type": "Type",
+            "jsFile": "Js File",
+            "htmlFile": "Html File"
+        }
+    }
+}
