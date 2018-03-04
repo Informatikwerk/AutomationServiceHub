@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "nodeRegistry": "Node Registry",
                 "gui": "Gui",
+                "nodeMetaRegister": "Node Meta Register",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

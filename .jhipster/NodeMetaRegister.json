@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "iconUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "label",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "actionElements",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "valueElements",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "changelogDate": "20180304144821",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "node_meta_register",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

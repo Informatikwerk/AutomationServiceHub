@@ -1,0 +1,26 @@
+{
+    "automationServiceHubApp": {
+        "nodeMetaRegister" : {
+            "home": {
+                "title": "Node Meta Registers",
+                "createLabel": "Node Meta Register erstellen",
+                "createOrEditLabel": "Node Meta Register erstellen oder bearbeiten"
+            },
+            "created": "Node Meta Register erstellt mit ID {{ param }}",
+            "updated": "Node Meta Register aktualisiert mit ID {{ param }}",
+            "deleted": "Node Meta Register gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Node Meta Register {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Node Meta Register"
+            },
+            "type": "Type",
+            "description": "Description",
+            "iconUrl": "Icon Url",
+            "label": "Label",
+            "actionElements": "Action Elements",
+            "valueElements": "Value Elements"
+        }
+    }
+}

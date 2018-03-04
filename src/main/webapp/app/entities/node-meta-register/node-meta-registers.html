@@ -1,0 +1,66 @@
+<div>
+    <h2 data-translate="automationServiceHubApp.nodeMetaRegister.home.title">Node Meta Registers</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="node-meta-register.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="automationServiceHubApp.nodeMetaRegister.home.createLabel">
+                        Create new Node Meta Register
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="automationServiceHubApp.nodeMetaRegister.type">Type</span></th>
+                    <th><span data-translate="automationServiceHubApp.nodeMetaRegister.description">Description</span></th>
+                    <th><span data-translate="automationServiceHubApp.nodeMetaRegister.iconUrl">Icon Url</span></th>
+                    <th><span data-translate="automationServiceHubApp.nodeMetaRegister.label">Label</span></th>
+                    <th><span data-translate="automationServiceHubApp.nodeMetaRegister.actionElements">Action Elements</span></th>
+                    <th><span data-translate="automationServiceHubApp.nodeMetaRegister.valueElements">Value Elements</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="nodeMetaRegister in vm.nodeMetaRegisters track by nodeMetaRegister.id">
+                    <td><a ui-sref="node-meta-register-detail({id:nodeMetaRegister.id})">{{nodeMetaRegister.id}}</a></td>
+                    <td>{{nodeMetaRegister.type}}</td>
+                    <td>{{nodeMetaRegister.description}}</td>
+                    <td>{{nodeMetaRegister.iconUrl}}</td>
+                    <td>{{nodeMetaRegister.label}}</td>
+                    <td>{{nodeMetaRegister.actionElements}}</td>
+                    <td>{{nodeMetaRegister.valueElements}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="node-meta-register-detail({id:nodeMetaRegister.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="node-meta-register.edit({id:nodeMetaRegister.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="node-meta-register.delete({id:nodeMetaRegister.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
