@@ -4,25 +4,37 @@
     "fields": [
         {
             "fieldName": "ip",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
-            "fieldName": "nodeId",
-            "fieldType": "String"
+            "fieldName": "node_id",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
-            "fieldName": "realmKey",
-            "fieldType": "String"
+            "fieldName": "reaml_key",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "type",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
-    "changelogDate": "20171229105240",
+    "changelogDate": "20180509110847",
     "dto": "no",
     "service": "no",
     "entityTableName": "node_registry",
     "jpaMetamodelFiltering": false,
-    "pagination": "infinite-scroll"
+    "pagination": "no"
 }

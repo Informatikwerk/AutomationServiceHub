@@ -1,3 +1,4 @@
+
 {
     "automationServiceHubApp": {
         "nodeRegistry" : {
@@ -16,8 +17,8 @@
                 "title": "Node Registry"
             },
             "ip": "Ip",
-            "nodeId": "Node Id",
-            "realmKey": "Realm Key",
+            "node_id": "Node Id",
+            "reaml_key": "Reaml Key",
             "type": "Type"
         }
     }

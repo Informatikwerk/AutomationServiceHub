@@ -4,12 +4,14 @@
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
+            "library-upload": "Upload",
+            "library-libs": "Libs",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "guiRegister": "Gui Register",
                 "nodeRegistry": "Node Registry",
-                "gui": "Gui",
-                "nodeMetaRegister": "Node Meta Register",
+                "nodeMetaRegistry": "Node Meta Registry",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -48,8 +50,15 @@
         },
         "messages": {
             "info": {
-                "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
-                "register": "You don't have an account yet? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Register a new account</a>"
+                "authenticated": {
+                    "prefix": "If you want to ",
+                    "link": "sign in",
+                    "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
+                },
+                "register": {
+                    "noaccount": "You don't have an account yet?",
+                    "link": "Register a new account"
+                }
             },
             "error": {
                 "dontmatch": "The password and its confirmation do not match!"
@@ -112,7 +121,7 @@
             "pattern": "This field should follow pattern for {{ pattern }}.",
             "number": "This field should be a number.",
             "datetimelocal": "This field should be a date and time.",
-            "patternLettersAndDigits": "This field can only contain letters and digits."
+            "patternLogin": "This field can only contain letters, digits and e-mail addresses."
         }
     },
     "error": {

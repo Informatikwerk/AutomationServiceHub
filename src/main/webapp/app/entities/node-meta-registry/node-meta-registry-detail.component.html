@@ -1,0 +1,46 @@
+
+<div *ngIf="nodeMetaRegistry">
+    <h2><span jhiTranslate="automationServiceHubApp.nodeMetaRegistry.detail.title">Node Meta Registry</span> {{nodeMetaRegistry.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="automationServiceHubApp.nodeMetaRegistry.type">Type</span></dt>
+        <dd>
+            <span>{{nodeMetaRegistry.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeMetaRegistry.description">Description</span></dt>
+        <dd>
+            <span>{{nodeMetaRegistry.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeMetaRegistry.icon_url">Icon Url</span></dt>
+        <dd>
+            <span>{{nodeMetaRegistry.icon_url}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeMetaRegistry.label">Label</span></dt>
+        <dd>
+            <span>{{nodeMetaRegistry.label}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeMetaRegistry.action_elements">Action Elements</span></dt>
+        <dd>
+            <span>{{nodeMetaRegistry.action_elements}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeMetaRegistry.value_elements">Value Elements</span></dt>
+        <dd>
+            <span>{{nodeMetaRegistry.value_elements}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'node-meta-registry/'+ nodeMetaRegistry.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

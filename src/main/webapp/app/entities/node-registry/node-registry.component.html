@@ -1,0 +1,64 @@
+<div>
+    <h2>
+        <span jhiTranslate="automationServiceHubApp.nodeRegistry.home.title">Node Registries</span>
+        <button class="btn btn-primary float-right jh-create-entity create-node-registry" [routerLink]="['/', { outlets: { popup: ['node-registry-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="automationServiceHubApp.nodeRegistry.home.createLabel">
+            Create new Node Registry
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="nodeRegistries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.ip">Ip</span></th>
+            <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.node_id">Node Id</span></th>
+            <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.reaml_key">Reaml Key</span></th>
+            <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.type">Type</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let nodeRegistry of nodeRegistries ;trackBy: trackId">
+                <td><a [routerLink]="['../node-registry', nodeRegistry.id ]">{{nodeRegistry.id}}</a></td>
+                <td>{{nodeRegistry.ip}}</td>
+                <td>{{nodeRegistry.node_id}}</td>
+                <td>{{nodeRegistry.reaml_key}}</td>
+                <td>{{nodeRegistry.type}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../node-registry', nodeRegistry.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'node-registry/'+ nodeRegistry.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'node-registry/'+ nodeRegistry.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

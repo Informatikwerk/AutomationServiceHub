@@ -1,0 +1,38 @@
+
+<div *ngIf="nodeRegistry">
+    <h2><span jhiTranslate="automationServiceHubApp.nodeRegistry.detail.title">Node Registry</span> {{nodeRegistry.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="automationServiceHubApp.nodeRegistry.ip">Ip</span></dt>
+        <dd>
+            <span>{{nodeRegistry.ip}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeRegistry.node_id">Node Id</span></dt>
+        <dd>
+            <span>{{nodeRegistry.node_id}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeRegistry.reaml_key">Reaml Key</span></dt>
+        <dd>
+            <span>{{nodeRegistry.reaml_key}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodeRegistry.type">Type</span></dt>
+        <dd>
+            <span>{{nodeRegistry.type}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'node-registry/'+ nodeRegistry.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
