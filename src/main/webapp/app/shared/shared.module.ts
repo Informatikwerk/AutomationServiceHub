@@ -13,7 +13,7 @@ import {
     LoginModalService,
     JhiLoginModalComponent,
     Principal,
-    HasAnyAuthorityDirective,
+    HasAnyAuthorityDirective
 } from './';
 
 @NgModule({
@@ -34,7 +34,7 @@ import {
         CSRFService,
         AuthServerProvider,
         UserService,
-        DatePipe
+        DatePipe,
     ],
     entryComponents: [JhiLoginModalComponent],
     exports: [
@@ -46,4 +46,5 @@ import {
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export class AutomationServiceHubSharedModule {}
+export class AutomationServiceHubSharedModule {
+}

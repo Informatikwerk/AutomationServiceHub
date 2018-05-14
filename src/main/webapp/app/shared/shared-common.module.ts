@@ -10,6 +10,7 @@ import {
     JhiAlertComponent,
     JhiAlertErrorComponent
 } from './';
+import { NewLibraryModalComponent } from './new-library-modal/new-library-modal.component';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import {
     declarations: [
         FindLanguageFromKeyPipe,
         JhiAlertComponent,
-        JhiAlertErrorComponent
+        JhiAlertErrorComponent,
+        NewLibraryModalComponent
     ],
     providers: [
         JhiLanguageHelper,
@@ -26,13 +28,17 @@ import {
         {
             provide: LOCALE_ID,
             useValue: 'en'
-        },
+        }
     ],
     exports: [
         AutomationServiceHubSharedLibsModule,
         FindLanguageFromKeyPipe,
         JhiAlertComponent,
-        JhiAlertErrorComponent
+        JhiAlertErrorComponent,
+        NewLibraryModalComponent
+    ],
+    entryComponents: [
+        NewLibraryModalComponent
     ]
 })
 export class AutomationServiceHubSharedCommonModule {

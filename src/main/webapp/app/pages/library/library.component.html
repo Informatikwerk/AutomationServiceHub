@@ -3,16 +3,32 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
 
-<div class="table-responsive" *ngIf="libraries">
-    <table class="table table-striped">
-        <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let library of libraries ;trackBy: trackId">
-</tr>
-</tbody>
-</table>
-</div>
+    <div class="table-responsive" *ngIf="libraries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Platform</td>
+                <td>Version</td>
+                <td>Author</td>
+                <td>Url</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let library of libraries">
+                <td>{{library.name}}</td>
+                <td>{{library.description}}</td>
+                <td>{{library.platform}}</td>
+                <td>{{library.version}}</td>
+                <td>{{library.author}}</td>
+                <td>{{library.url}}</td>
+                <td>
+                    <button class="btn btn-success">Download</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -3,7 +3,7 @@ import './vendor.ts';
 import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService  } from 'ngx-webstorage';
+import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
@@ -11,13 +11,14 @@ import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interc
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { AutomationServiceHubSharedModule, UserRouteAccessService } from './shared';
-import { AutomationServiceHubAppRoutingModule} from './app-routing.module';
+import { AutomationServiceHubAppRoutingModule } from './app-routing.module';
 import { AutomationServiceHubHomeModule } from './home/home.module';
 import { AutomationServiceHubAdminModule } from './admin/admin.module';
 import { AutomationServiceHubAccountModule } from './account/account.module';
 import { AutomationServiceHubPageSetsModule } from './pages/page-sets.module';
 import { AutomationServiceHubEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -33,13 +34,13 @@ import {
     imports: [
         BrowserModule,
         AutomationServiceHubAppRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+        Ng2Webstorage.forRoot({prefix: 'jhi', separator: '-'}),
         AutomationServiceHubSharedModule,
         AutomationServiceHubHomeModule,
         AutomationServiceHubAdminModule,
         AutomationServiceHubPageSetsModule,
         AutomationServiceHubAccountModule,
-        AutomationServiceHubEntityModule,
+        AutomationServiceHubEntityModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -54,6 +55,7 @@ import {
         ProfileService,
         PaginationConfig,
         UserRouteAccessService,
+        NgbActiveModal,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
@@ -88,6 +90,7 @@ import {
             ]
         }
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [JhiMainComponent]
 })
-export class AutomationServiceHubAppModule {}
+export class AutomationServiceHubAppModule {
+}

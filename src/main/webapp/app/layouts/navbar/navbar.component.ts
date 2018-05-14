@@ -5,8 +5,10 @@ import { JhiLanguageService } from 'ng-jhipster';
 
 import { ProfileService } from '../profiles/profile.service';
 import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from '../../shared';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { VERSION } from '../../app.constants';
+import { NewLibraryModalComponent } from '../../shared/new-library-modal/new-library-modal.component';
 
 @Component({
     selector: 'jhi-navbar',
@@ -30,7 +32,8 @@ export class NavbarComponent implements OnInit {
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private modalService: NgbModal
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -48,7 +51,7 @@ export class NavbarComponent implements OnInit {
     }
 
     changeLanguage(languageKey: string) {
-      this.languageService.changeLanguage(languageKey);
+        this.languageService.changeLanguage(languageKey);
     }
 
     collapseNavbar() {
@@ -75,5 +78,9 @@ export class NavbarComponent implements OnInit {
 
     getImageUrl() {
         return this.isAuthenticated() ? this.principal.getImageUrl() : null;
+    }
+
+    openUploadModal() {
+        this.modalService.open(NewLibraryModalComponent);
     }
 }

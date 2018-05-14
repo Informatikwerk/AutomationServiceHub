@@ -14,23 +14,24 @@ export class LibraryService {
 
     private resourceUrl = SERVER_API_URL + 'api/library/library';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
     create(library: Library): Observable<LibraryResponseType> {
         const copy = this.convert(library);
-        return this.http.post<Library>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.post<Library>(this.resourceUrl, copy, {observe: 'response'})
             .map((res: LibraryResponseType) => this.convertResponse(res));
     }
 
     update(library: Library): Observable<LibraryResponseType> {
         const copy = this.convert(library);
-        return this.http.put<Library>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.put<Library>(this.resourceUrl, copy, {observe: 'response'})
             .map((res: LibraryResponseType) => this.convertResponse(res));
     }
 
     query(req?: any): Observable<LibraryResponseType> {
         const options = createRequestOption(req);
-        return this.http.get<Library>(this.resourceUrl, { observe: 'response' })
+        return this.http.get<Library>(this.resourceUrl, {observe: 'response'})
             .map((res: LibraryResponseType) => this.convertResponse(res));
     }
 
@@ -52,7 +53,12 @@ export class LibraryService {
      * Convert a returned JSON object to Library.
      */
     private convertItemFromServer(json: any): Library {
-        const copy: Library = Object.assign(new Library(), json);
+        const copy: Library = Object.assign(new Library('Library 1',
+            'Cool stuff 1',
+            'Arduino',
+            '1.1',
+            'Jacob',
+            'www.home.page'), json);
         return copy;
     }
 

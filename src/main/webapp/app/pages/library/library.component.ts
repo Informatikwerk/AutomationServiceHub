@@ -13,9 +13,7 @@ import { Principal } from '../../shared';
     selector: 'jhi-library',
     templateUrl: './library.component.html'
 })
-export class LibraryComponent implements OnInit, OnDestroy {
-
-    library: Library = new Library();
+export class LibraryComponent implements OnInit {
 
     currentAccount: any;
     eventSubscriber: Subscription;
@@ -29,6 +27,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    libraries: Library[];
 
     constructor(
         private libraryService: LibraryService,
@@ -40,6 +39,15 @@ export class LibraryComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        this.libraries = new Array();
+        for (let i = 0; i < 10; i++) {
+            this.libraries.push(new Library('Cool library',
+                'Do cool stuff ',
+                'Arduino',
+                '1.' + i,
+                'Jacob',
+                'www.home.page'));
+        }
     }
 
     ngOnInit() {
@@ -49,24 +57,8 @@ export class LibraryComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
 
-        this.registerChangeInLibraries();
     }
 
-    ngOnDestroy() {
-
-        this.eventManager.destroy(this.eventSubscriber);
-    }
-    registerChangeInLibraries() {
-        this.eventSubscriber = this.eventManager.subscribe('libraryListModification', (response) => this.loadAll());
-    }
-
-    sort() {
-        const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-        if (this.predicate !== 'id') {
-            result.push('id');
-        }
-        return result;
-    }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }

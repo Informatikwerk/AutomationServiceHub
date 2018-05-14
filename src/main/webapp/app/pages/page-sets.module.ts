@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AutomationServiceHubLibraryModule } from './library/library.module';
+
 /* jhipster-needle-add-pageset-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -12,4 +13,5 @@ import { AutomationServiceHubLibraryModule } from './library/library.module';
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AutomationServiceHubPageSetsModule {}
+export class AutomationServiceHubPageSetsModule {
+}
