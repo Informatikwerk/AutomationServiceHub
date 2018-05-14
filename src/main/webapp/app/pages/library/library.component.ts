@@ -39,9 +39,10 @@ export class LibraryComponent implements OnInit {
     }
 
     loadAll() {
+        console.log('load all fired');
         this.libraries = new Array();
         for (let i = 0; i < 10; i++) {
-            this.libraries.push(new Library('Cool library',
+            this.libraries.push(new Library('Cool library ' + i,
                 'Do cool stuff ',
                 'Arduino',
                 '1.' + i,

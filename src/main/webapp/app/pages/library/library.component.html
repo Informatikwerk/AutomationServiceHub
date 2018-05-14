@@ -4,6 +4,9 @@
     <jhi-alert-error></jhi-alert-error>
 
     <div class="table-responsive" *ngIf="libraries">
+        <nav class="navbar">
+            <input class="form-control" type="text" name="search" [(ngModel)]="term">
+        </nav>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -17,7 +20,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let library of libraries">
+            <tr *ngFor="let library of libraries |filter:{name:term}">
                 <td>{{library.name}}</td>
                 <td>{{library.description}}</td>
                 <td>{{library.platform}}</td>
