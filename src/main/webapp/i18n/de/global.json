@@ -11,6 +11,8 @@
                 "guiRegister": "Gui Register",
                 "nodeRegistry": "Node Registry",
                 "nodeMetaRegistry": "Node Meta Registry",
+                "libraryRegistry": "Library Registry",
+                "sources": "Sources",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

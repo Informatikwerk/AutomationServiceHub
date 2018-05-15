@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "libraryRegistry",
+            "otherEntityName": "libraryRegistry",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "sourceCode",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180514222755",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "sources",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -9,7 +9,7 @@
         <div class="modal-body">
             <div class="container">
                 <form>
-                    <div class="row">
+                    <div class="row m-3">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row m-3">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="platform">Platform</label>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row m-3">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="author">Author</label>
@@ -56,8 +56,9 @@
                     <div class="row m-3 d-flex justify-content-center">
                         <input type="file" (change)="onFileChange($event)"/>
                     </div>
-
-                    <button type="submit" [disabled]="formInvalid" class="btn btn-success">Submit</button>
+                    <div class="row d-flex float-right">
+                        <button type="submit" [disabled]="formInvalid" class="btn btn-success">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
