@@ -1,8 +1,11 @@
 {
-    "automationServiceHubApp": {
-        "library": {
-            "library": {
-                "title": "Library"            }
+  "automationServiceHubApp": {
+    "library": {
+      "library": {
+        "home": {
+          "title": "Library"
         }
+      }
     }
+  }
 }

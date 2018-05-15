@@ -10,8 +10,8 @@ export const LibraryRoute: Routes = [
         component: LibraryComponent,
         data: {
             authorities: [],
-            pageTitle: 'automationServiceHubApp.library-library.home.title'
+            pageTitle: 'automationServiceHubApp.library.library.home.title'
         },
         canActivate: [UserRouteAccessService]
-    },
+    }
 ];

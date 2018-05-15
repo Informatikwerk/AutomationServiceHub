@@ -15,9 +15,13 @@ export class NewLibraryModalComponent {
     onFileChange(event) {
         const reader = new FileReader();
 
+        reader.onload = function (e) {
+            console.log(reader.result);
+        };
+
         if (event.target.files && event.target.files.length) {
             const [file] = event.target.files;
-            reader.readAsDataURL(file);
+            reader.readAsText(file);
             this.formInvalid = false;
         }
     }
