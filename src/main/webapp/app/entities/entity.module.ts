@@ -5,6 +5,7 @@ import { AutomationServiceHubNodeRegistryModule } from './node-registry/node-reg
 import { AutomationServiceHubNodeMetaRegistryModule } from './node-meta-registry/node-meta-registry.module';
 import { AutomationServiceHubLibraryRegistryModule } from './library-registry/library-registry.module';
 import { AutomationServiceHubSourcesModule } from './sources/sources.module';
+
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -13,7 +14,7 @@ import { AutomationServiceHubSourcesModule } from './sources/sources.module';
         AutomationServiceHubNodeRegistryModule,
         AutomationServiceHubNodeMetaRegistryModule,
         AutomationServiceHubLibraryRegistryModule,
-        AutomationServiceHubSourcesModule,
+        AutomationServiceHubSourcesModule
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],
@@ -21,4 +22,5 @@ import { AutomationServiceHubSourcesModule } from './sources/sources.module';
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AutomationServiceHubEntityModule {}
+export class AutomationServiceHubEntityModule {
+}

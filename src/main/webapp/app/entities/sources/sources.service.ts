@@ -11,35 +11,38 @@ export type EntityResponseType = HttpResponse<Sources>;
 @Injectable()
 export class SourcesService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/sources';
+    private resourceUrl = SERVER_API_URL + 'api/sources';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
     create(sources: Sources): Observable<EntityResponseType> {
+        console.log("saving sources");
         const copy = this.convert(sources);
-        return this.http.post<Sources>(this.resourceUrl, copy, { observe: 'response' })
+        console.log("saving sources", copy);
+        return this.http.post<Sources>(this.resourceUrl, copy, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     update(sources: Sources): Observable<EntityResponseType> {
         const copy = this.convert(sources);
-        return this.http.put<Sources>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.put<Sources>(this.resourceUrl, copy, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Sources>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Sources>(`${this.resourceUrl}/${id}`, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     query(req?: any): Observable<HttpResponse<Sources[]>> {
         const options = createRequestOption(req);
-        return this.http.get<Sources[]>(this.resourceUrl, { params: options, observe: 'response' })
+        return this.http.get<Sources[]>(this.resourceUrl, {params: options, observe: 'response'})
             .map((res: HttpResponse<Sources[]>) => this.convertArrayResponse(res));
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, {observe: 'response'});
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
