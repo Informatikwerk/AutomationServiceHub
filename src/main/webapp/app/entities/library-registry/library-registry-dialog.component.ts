@@ -11,7 +11,6 @@ import { LibraryRegistryPopupService } from './library-registry-popup.service';
 import { LibraryRegistryService } from './library-registry.service';
 import { Sources, SourcesService } from '../sources';
 
-
 @Component({
     selector: 'jhi-library-registry-dialog',
     templateUrl: './library-registry-dialog.component.html'
@@ -71,7 +70,7 @@ export class LibraryRegistryDialogComponent implements OnInit {
 
     private setupReader(file) {
         const reader = new FileReader();
-        let sources = this.sourceCodes;
+        const sources = this.sourceCodes;
         reader.onload = function (e) {
             const sourceCode = reader.result;
             sources.push(sourceCode);

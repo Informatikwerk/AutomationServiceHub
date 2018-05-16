@@ -15,7 +15,6 @@ import { AutomationServiceHubAppRoutingModule } from './app-routing.module';
 import { AutomationServiceHubHomeModule } from './home/home.module';
 import { AutomationServiceHubAdminModule } from './admin/admin.module';
 import { AutomationServiceHubAccountModule } from './account/account.module';
-import { AutomationServiceHubPageSetsModule } from './pages/page-sets.module';
 import { AutomationServiceHubEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -39,7 +38,6 @@ import {
         AutomationServiceHubSharedModule,
         AutomationServiceHubHomeModule,
         AutomationServiceHubAdminModule,
-        AutomationServiceHubPageSetsModule,
         AutomationServiceHubAccountModule,
         AutomationServiceHubEntityModule,
         Ng2SearchPipeModule
