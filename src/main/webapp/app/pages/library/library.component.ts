@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Rx';
 import { Library } from './library.model';
 import { LibraryService } from './library.service';
 import { Principal } from '../../shared';
+import { LibraryRegistry } from '../../entities/library-registry/library-registry.model';
+import { LibraryRegistryService } from '../../entities/library-registry';
 
 @Component({
     selector: 'jhi-library',
@@ -27,28 +29,26 @@ export class LibraryComponent implements OnInit {
     predicate: any;
     previousPage: any;
     reverse: any;
-    libraries: Library[];
+    libraryRegistries: LibraryRegistry[];
 
     constructor(
         private libraryService: LibraryService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private libraryRegistryService: LibraryRegistryService
     ) {
     }
 
     loadAll() {
         console.log('load all fired');
-        this.libraries = new Array();
-        for (let i = 0; i < 10; i++) {
-            this.libraries.push(new Library('Cool library ' + i,
-                'Do cool stuff ',
-                'Arduino',
-                '1.' + i,
-                'Jacob',
-                'www.home.page'));
-        }
+        this.libraryRegistryService.query().subscribe(
+            (res: HttpResponse<LibraryRegistry[]>) => {
+                this.libraryRegistries = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     ngOnInit() {

@@ -9,6 +9,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { VERSION } from '../../app.constants';
 import { NewLibraryModalComponent } from '../../shared/new-library-modal/new-library-modal.component';
+import {
+    LibraryRegistryDialogComponent,
+    LibraryRegistryPopupComponent
+} from '../../entities/library-registry/library-registry-dialog.component';
+import { LibraryRegistryPopupService } from '../../entities/library-registry/library-registry-popup.service';
 
 @Component({
     selector: 'jhi-navbar',
@@ -33,7 +38,7 @@ export class NavbarComponent implements OnInit {
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
         private router: Router,
-        private modalService: NgbModal
+        private libraryRegistryPopupService: LibraryRegistryPopupService
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -81,6 +86,7 @@ export class NavbarComponent implements OnInit {
     }
 
     openUploadModal() {
-        this.modalService.open(NewLibraryModalComponent);
+        this.libraryRegistryPopupService
+            .open(LibraryRegistryDialogComponent as Component);
     }
 }

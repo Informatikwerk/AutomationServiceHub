@@ -54,11 +54,11 @@
                         </div>
                     </div>
                     <div class="row m-3 d-flex justify-content-center">
-                        <input type="file" (change)="onFileChange($event)"/>
+                        <input type="file" multiple (change)="onFileChange($event)"/>
                     </div>
                     <div class="row d-flex float-right">
                         <button type="submit" [disabled]="formInvalid" class="btn btn-success"
-                                (click)="activeModal.dismiss('Submit click')">Submit
+                                (click)="saveEvent()">Submit
                         </button>
                     </div>
                 </form>
