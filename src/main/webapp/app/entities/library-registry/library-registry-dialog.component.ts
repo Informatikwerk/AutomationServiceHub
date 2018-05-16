@@ -10,6 +10,7 @@ import { LibraryRegistry } from './library-registry.model';
 import { LibraryRegistryPopupService } from './library-registry-popup.service';
 import { LibraryRegistryService } from './library-registry.service';
 import { Sources, SourcesService } from '../sources';
+import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-library-registry-dialog',
@@ -25,12 +26,16 @@ export class LibraryRegistryDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private libraryRegistryService: LibraryRegistryService,
         private sourcesService: SourcesService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private principal: Principal
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.principal.identity().then((account) => {
+            this.libraryRegistry.author = account.firstName;
+        });
     }
 
     clear() {
