@@ -17,9 +17,7 @@ export class SourcesService {
     }
 
     create(sources: Sources): Observable<EntityResponseType> {
-        console.log("saving sources");
         const copy = this.convert(sources);
-        console.log("saving sources", copy);
         return this.http.post<Sources>(this.resourceUrl, copy, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }

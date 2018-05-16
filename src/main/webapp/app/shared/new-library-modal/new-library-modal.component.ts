@@ -27,7 +27,6 @@ export class NewLibraryModalComponent {
         // };
 
         if (event.target.files && event.target.files.length) {
-            console.log(event.target.files, event.target.files.length);
             const files = event.target.files;
             for (const singleFile of files) {
                 console.log('file ', singleFile);

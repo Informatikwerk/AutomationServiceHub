@@ -39,8 +39,6 @@ export class LibraryRegistryDialogComponent implements OnInit {
     }
 
     save() {
-        console.log('Save booom');
-        console.log(this.sourceCodes);
         this.isSaving = true;
         if (this.libraryRegistry.id !== undefined) {
             this.subscribeToSaveResponse(
@@ -60,14 +58,24 @@ export class LibraryRegistryDialogComponent implements OnInit {
         }
     }
 
+    private subscribeToSaveResponseSources(result: Observable<HttpResponse<Sources>>) {
+        result.subscribe((res: HttpResponse<Sources>) =>
+            this.onSaveSuccessSources(res.body), (res: HttpErrorResponse) => this.onSaveError());
+    }
+
+    private onSaveSuccessSources(result: Sources) {
+        this.eventManager.broadcast({name: 'sourcesListModification', content: 'OK'});
+        this.isSaving = false;
+        this.activeModal.dismiss(result);
+    }
+
     private setupReader(file) {
         const reader = new FileReader();
         let sources = this.sourceCodes;
         reader.onload = function (e) {
             const sourceCode = reader.result;
-            console.log('text ', sourceCode);
             sources.push(sourceCode);
-        }
+        };
         reader.readAsText(file);
     }
 
@@ -77,16 +85,13 @@ export class LibraryRegistryDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: LibraryRegistry) {
+        for (const sourceCode of this.sourceCodes) {
+            this.subscribeToSaveResponseSources(
+                this.sourcesService.create(new Sources(undefined, sourceCode, result)));
+        }
         this.eventManager.broadcast({name: 'libraryRegistryListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
-        for (const sourceCode of this.sourceCodes) {
-            // this.subscribeToSaveResponse(
-            //     this.sourcesService.create(new Sources(undefined, sourceCode, result)));
-            console.log('save file ', new Sources(undefined, sourceCode, result));
-        }
-        console.log('Save done ', result.id);
-        console.log('Save done ', result);
     }
 
     private onSaveError() {

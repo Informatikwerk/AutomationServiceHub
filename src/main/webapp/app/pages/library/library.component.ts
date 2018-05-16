@@ -42,7 +42,6 @@ export class LibraryComponent implements OnInit {
     }
 
     loadAll() {
-        console.log('load all fired');
         this.libraryRegistryService.query().subscribe(
             (res: HttpResponse<LibraryRegistry[]>) => {
                 this.libraryRegistries = res.body;
