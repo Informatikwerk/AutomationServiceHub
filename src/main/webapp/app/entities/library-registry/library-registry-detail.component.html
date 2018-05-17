@@ -1,6 +1,6 @@
-
 <div *ngIf="libraryRegistry">
-    <h2><span jhiTranslate="automationServiceHubApp.libraryRegistry.detail.title">Library Registry</span> {{libraryRegistry.id}}</h2>
+    <h2><span jhiTranslate="automationServiceHubApp.libraryRegistry.detail.title">Library Registry</span>
+        {{libraryRegistry.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
@@ -28,9 +28,14 @@
         <dd>
             <span>{{libraryRegistry.url}}</span>
         </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.sources.sourceCode">Source code</span></dt>
+        <dd *ngFor="let source of sources">
+            <span>{{source.fileName}}</span>
+        </dd>
     </dl>
 
-    <button type="submit"
+    <button type=" submit
+        "
             (click)="previousState()"
             class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
