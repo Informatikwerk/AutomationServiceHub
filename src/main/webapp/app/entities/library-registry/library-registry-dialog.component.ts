@@ -21,6 +21,7 @@ export class LibraryRegistryDialogComponent implements OnInit {
     libraryRegistry: LibraryRegistry;
     sourceCodes: string[] = new Array();
     isSaving: boolean;
+    files: File[];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -36,6 +37,7 @@ export class LibraryRegistryDialogComponent implements OnInit {
         this.principal.identity().then((account) => {
             this.libraryRegistry.author = account.firstName;
         });
+
     }
 
     clear() {
@@ -75,7 +77,7 @@ export class LibraryRegistryDialogComponent implements OnInit {
 
     private setupReader(file) {
         const reader = new FileReader();
-        const sources = this.sourceCodes;
+        let sources = this.sourceCodes;
         reader.onload = function (e) {
             const sourceCode = reader.result;
             sources.push(sourceCode);

@@ -84,11 +84,11 @@
             <input type="text" class="form-control" name="url" id="field_url"
                    [(ngModel)]="libraryRegistry.url"/>
         </div>
-        <div class="form-group">
+        <div class="form-group" [hidden]="libraryRegistry.id">
             <label class="form-control-label" jhiTranslate="automationServiceHubApp.sources.sourceCode"
                    for="field_source_code">Source code</label>
-            <input type="file" multiple class="form-control" name="source-code"
-                   id="field_source_code" required (change)="onFileChange($event)"git/>
+            <input type="file" multiple class="form-control" name="source-code" [(ngModel)]="files"
+                   id="field_source_code" (change)="onFileChange($event)" [required]="!libraryRegistry.id"/>
             <div [hidden]="!(editForm.controls.source-code?.dirty && editForm.controls.source-code?.invalid)">
                 <small class="form-text text-danger"
                        [hidden]="!editForm.controls.source-code?.errors?.required"

@@ -12,9 +12,10 @@ import { Principal } from '../../shared';
     templateUrl: './library-registry.component.html'
 })
 export class LibraryRegistryComponent implements OnInit, OnDestroy {
-libraryRegistries: LibraryRegistry[];
+    libraryRegistries: LibraryRegistry[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    term: any = {name: ''};
 
     constructor(
         private libraryRegistryService: LibraryRegistryService,
@@ -32,6 +33,7 @@ libraryRegistries: LibraryRegistry[];
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -47,6 +49,7 @@ libraryRegistries: LibraryRegistry[];
     trackId(index: number, item: LibraryRegistry) {
         return item.id;
     }
+
     registerChangeInLibraryRegistries() {
         this.eventSubscriber = this.eventManager.subscribe('libraryRegistryListModification', (response) => this.loadAll());
     }

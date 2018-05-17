@@ -1,13 +1,13 @@
 <div>
     <h2>
         <span jhiTranslate="automationServiceHubApp.libraryRegistry.home.title">Library Registries</span>
-        <button class="btn btn-primary float-right jh-create-entity create-library-registry"
-                [routerLink]="['/', { outlets: { popup: ['library-registry-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span jhiTranslate="automationServiceHubApp.libraryRegistry.home.createLabel">
-            Create new Library Registry
-            </span>
-        </button>
+        <!--<button class="btn btn-primary float-right jh-create-entity create-library-registry"-->
+        <!--[routerLink]="['/', { outlets: { popup: ['library-registry-new'] } }]">-->
+        <!--<span class="fa fa-plus"></span>-->
+        <!--<span jhiTranslate="automationServiceHubApp.libraryRegistry.home.createLabel">-->
+        <!--Create new Library Registry-->
+        <!--</span>-->
+        <!--</button>-->
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -15,7 +15,7 @@
     <br/>
     <div class="table-responsive" *ngIf="libraryRegistries">
         <nav class="navbar">
-            <input class="form-control" type="text" name="search" [(ngModel)]="term">
+            <input class="form-control" type="text" name="search" [(ngModel)]="term.name">
         </nav>
         <table class="table table-striped">
             <thead>
@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let libraryRegistry of libraryRegistries|filter:{name:term} ;trackBy: trackId">
+            <tr *ngFor="let libraryRegistry of libraryRegistries | filterBy:term ;trackBy: trackId">
                 <td><a [routerLink]="['../library-registry', libraryRegistry.id ]">{{libraryRegistry.id}}</a></td>
                 <td>{{libraryRegistry.name}}</td>
                 <td>{{libraryRegistry.author}}</td>

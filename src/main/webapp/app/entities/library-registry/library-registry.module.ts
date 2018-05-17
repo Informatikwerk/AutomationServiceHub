@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import { AutomationServiceHubSharedModule } from '../../shared';
 import {
@@ -12,18 +13,19 @@ import {
     LibraryRegistryDeletePopupComponent,
     LibraryRegistryDeleteDialogComponent,
     libraryRegistryRoute,
-    libraryRegistryPopupRoute,
+    libraryRegistryPopupRoute
 } from './';
 
 const ENTITY_STATES = [
     ...libraryRegistryRoute,
-    ...libraryRegistryPopupRoute,
+    ...libraryRegistryPopupRoute
 ];
 
 @NgModule({
     imports: [
         AutomationServiceHubSharedModule,
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
+        FilterPipeModule
     ],
     declarations: [
         LibraryRegistryComponent,
@@ -31,19 +33,20 @@ const ENTITY_STATES = [
         LibraryRegistryDialogComponent,
         LibraryRegistryDeleteDialogComponent,
         LibraryRegistryPopupComponent,
-        LibraryRegistryDeletePopupComponent,
+        LibraryRegistryDeletePopupComponent
     ],
     entryComponents: [
         LibraryRegistryComponent,
         LibraryRegistryDialogComponent,
         LibraryRegistryPopupComponent,
         LibraryRegistryDeleteDialogComponent,
-        LibraryRegistryDeletePopupComponent,
+        LibraryRegistryDeletePopupComponent
     ],
     providers: [
         LibraryRegistryService,
-        LibraryRegistryPopupService,
+        LibraryRegistryPopupService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AutomationServiceHubLibraryRegistryModule {}
+export class AutomationServiceHubLibraryRegistryModule {
+}
