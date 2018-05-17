@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FilterPipeModule } from 'ngx-filter-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AutomationServiceHubSharedModule } from '../../shared';
 import {
@@ -25,7 +25,7 @@ const ENTITY_STATES = [
     imports: [
         AutomationServiceHubSharedModule,
         RouterModule.forChild(ENTITY_STATES),
-        FilterPipeModule
+        Ng2SearchPipeModule
     ],
     declarations: [
         LibraryRegistryComponent,

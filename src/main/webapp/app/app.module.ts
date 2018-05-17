@@ -18,7 +18,6 @@ import { AutomationServiceHubAccountModule } from './account/account.module';
 import { AutomationServiceHubEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -39,8 +38,7 @@ import {
         AutomationServiceHubHomeModule,
         AutomationServiceHubAdminModule,
         AutomationServiceHubAccountModule,
-        AutomationServiceHubEntityModule,
-        Ng2SearchPipeModule
+        AutomationServiceHubEntityModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

@@ -15,7 +15,7 @@
     <br/>
     <div class="table-responsive" *ngIf="libraryRegistries">
         <nav class="navbar">
-            <input class="form-control" type="text" name="search" [(ngModel)]="term.name">
+            <input class="form-control" type="text" name="search" [(ngModel)]="term">
         </nav>
         <table class="table table-striped">
             <thead>
@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let libraryRegistry of libraryRegistries | filterBy:term ;trackBy: trackId">
+            <tr *ngFor="let libraryRegistry of libraryRegistries | filter:term ;trackBy: trackId">
                 <td><a [routerLink]="['../library-registry', libraryRegistry.id ]">{{libraryRegistry.id}}</a></td>
                 <td>{{libraryRegistry.name}}</td>
                 <td>{{libraryRegistry.author}}</td>

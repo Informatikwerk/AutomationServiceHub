@@ -15,7 +15,6 @@ export class LibraryRegistryComponent implements OnInit, OnDestroy {
     libraryRegistries: LibraryRegistry[];
     currentAccount: any;
     eventSubscriber: Subscription;
-    term: any = {name: ''};
 
     constructor(
         private libraryRegistryService: LibraryRegistryService,
