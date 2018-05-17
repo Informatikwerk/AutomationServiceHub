@@ -26,6 +26,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="file_name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
             <column name="library_registry_id" type="bigint">
                 <constraints nullable="true" />
             </column>

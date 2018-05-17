@@ -25,6 +25,10 @@ public class Sources implements Serializable {
     @Column(name = "source_code", nullable = false)
     private String sourceCode;
 
+    @NotNull
+    @Column(name = "file_name", nullable = false)
+    private String fileName;
+
     @ManyToOne
     private LibraryRegistry libraryRegistry;
 
@@ -48,6 +52,19 @@ public class Sources implements Serializable {
 
     public void setSourceCode(String sourceCode) {
         this.sourceCode = sourceCode;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public Sources fileName(String fileName) {
+        this.fileName = fileName;
+        return this;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public LibraryRegistry getLibraryRegistry() {
@@ -89,6 +106,7 @@ public class Sources implements Serializable {
         return "Sources{" +
             "id=" + getId() +
             ", sourceCode='" + getSourceCode() + "'" +
+            ", fileName='" + getFileName() + "'" +
             "}";
     }
 }

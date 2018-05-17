@@ -42,6 +42,9 @@ public class SourcesResourceIntTest {
     private static final String DEFAULT_SOURCE_CODE = "AAAAAAAAAA";
     private static final String UPDATED_SOURCE_CODE = "BBBBBBBBBB";
 
+    private static final String DEFAULT_FILE_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_FILE_NAME = "BBBBBBBBBB";
+
     @Autowired
     private SourcesRepository sourcesRepository;
 
@@ -80,7 +83,8 @@ public class SourcesResourceIntTest {
      */
     public static Sources createEntity(EntityManager em) {
         Sources sources = new Sources()
-            .sourceCode(DEFAULT_SOURCE_CODE);
+            .sourceCode(DEFAULT_SOURCE_CODE)
+            .fileName(DEFAULT_FILE_NAME);
         return sources;
     }
 
@@ -105,6 +109,7 @@ public class SourcesResourceIntTest {
         assertThat(sourcesList).hasSize(databaseSizeBeforeCreate + 1);
         Sources testSources = sourcesList.get(sourcesList.size() - 1);
         assertThat(testSources.getSourceCode()).isEqualTo(DEFAULT_SOURCE_CODE);
+        assertThat(testSources.getFileName()).isEqualTo(DEFAULT_FILE_NAME);
     }
 
     @Test
@@ -146,6 +151,24 @@ public class SourcesResourceIntTest {
 
     @Test
     @Transactional
+    public void checkFileNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = sourcesRepository.findAll().size();
+        // set the field null
+        sources.setFileName(null);
+
+        // Create the Sources, which fails.
+
+        restSourcesMockMvc.perform(post("/api/sources")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(sources)))
+            .andExpect(status().isBadRequest());
+
+        List<Sources> sourcesList = sourcesRepository.findAll();
+        assertThat(sourcesList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllSources() throws Exception {
         // Initialize the database
         sourcesRepository.saveAndFlush(sources);
@@ -155,7 +178,8 @@ public class SourcesResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sources.getId().intValue())))
-            .andExpect(jsonPath("$.[*].sourceCode").value(hasItem(DEFAULT_SOURCE_CODE.toString())));
+            .andExpect(jsonPath("$.[*].sourceCode").value(hasItem(DEFAULT_SOURCE_CODE.toString())))
+            .andExpect(jsonPath("$.[*].fileName").value(hasItem(DEFAULT_FILE_NAME.toString())));
     }
 
     @Test
@@ -169,7 +193,8 @@ public class SourcesResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sources.getId().intValue()))
-            .andExpect(jsonPath("$.sourceCode").value(DEFAULT_SOURCE_CODE.toString()));
+            .andExpect(jsonPath("$.sourceCode").value(DEFAULT_SOURCE_CODE.toString()))
+            .andExpect(jsonPath("$.fileName").value(DEFAULT_FILE_NAME.toString()));
     }
 
     @Test
@@ -192,7 +217,8 @@ public class SourcesResourceIntTest {
         // Disconnect from session so that the updates on updatedSources are not directly saved in db
         em.detach(updatedSources);
         updatedSources
-            .sourceCode(UPDATED_SOURCE_CODE);
+            .sourceCode(UPDATED_SOURCE_CODE)
+            .fileName(UPDATED_FILE_NAME);
 
         restSourcesMockMvc.perform(put("/api/sources")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -204,6 +230,7 @@ public class SourcesResourceIntTest {
         assertThat(sourcesList).hasSize(databaseSizeBeforeUpdate);
         Sources testSources = sourcesList.get(sourcesList.size() - 1);
         assertThat(testSources.getSourceCode()).isEqualTo(UPDATED_SOURCE_CODE);
+        assertThat(testSources.getFileName()).isEqualTo(UPDATED_FILE_NAME);
     }
 
     @Test
