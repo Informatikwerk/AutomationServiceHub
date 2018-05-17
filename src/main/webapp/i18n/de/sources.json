@@ -17,6 +17,7 @@
                 "title": "Sources"
             },
             "sourceCode": "Source Code",
+            "fileName": "File Name",
             "libraryRegistry": "Library Registry"
         }
     }

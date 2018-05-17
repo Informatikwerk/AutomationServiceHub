@@ -14,6 +14,7 @@ import { AutomationServiceHubSourcesModule } from './sources/sources.module';
         AutomationServiceHubNodeRegistryModule,
         AutomationServiceHubNodeMetaRegistryModule,
         AutomationServiceHubLibraryRegistryModule,
+        AutomationServiceHubSourcesModule,
         AutomationServiceHubSourcesModule
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],

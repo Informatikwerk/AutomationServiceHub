@@ -19,7 +19,7 @@ import { Principal } from '../../shared';
 export class LibraryRegistryDialogComponent implements OnInit {
 
     libraryRegistry: LibraryRegistry;
-    sourceCodes: string[] = new Array();
+    sourceCodes: any [] = new Array();
     isSaving: boolean;
     files: File[];
 
@@ -80,7 +80,7 @@ export class LibraryRegistryDialogComponent implements OnInit {
         let sources = this.sourceCodes;
         reader.onload = function (e) {
             const sourceCode = reader.result;
-            sources.push(sourceCode);
+            sources.push({name: file.name, text: sourceCode});
         };
         reader.readAsText(file);
     }
@@ -91,9 +91,9 @@ export class LibraryRegistryDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: LibraryRegistry) {
-        for (const sourceCode of this.sourceCodes) {
+        for (const file of this.sourceCodes) {
             this.subscribeToSaveResponseSources(
-                this.sourcesService.create(new Sources(undefined, sourceCode, result)));
+                this.sourcesService.create(new Sources(undefined, file.text, file.name, result)));
         }
         this.eventManager.broadcast({name: 'libraryRegistryListModification', content: 'OK'});
         this.isSaving = false;
