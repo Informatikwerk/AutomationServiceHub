@@ -1,6 +1,7 @@
 package com.codingisthinking.hub.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.codingisthinking.hub.domain.LibraryRegistry;
 import com.codingisthinking.hub.domain.Sources;
 
 import com.codingisthinking.hub.repository.SourcesRepository;
@@ -9,6 +10,7 @@ import com.codingisthinking.hub.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -116,5 +118,23 @@ public class SourcesResource {
         log.debug("REST request to delete Sources : {}", id);
         sourcesRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * GET  /sources/lib/:id : get the sources for lib "id" .
+     *
+     * @param id the id of the lib to retrieve related sources
+     * @return the ResponseEntity with status 200 (OK) and with body the sources, or with status 404 (Not Found)
+     */
+    @GetMapping("/sources/lib/{id}")
+    @Timed
+    public List<Sources> getSourcesByLibraryRegistryId(@PathVariable Long id) {
+        log.debug("REST request to get Sources for given lib id: {}", id);
+        Sources sources = new Sources();
+        LibraryRegistry libraryRegistry = new LibraryRegistry();
+        libraryRegistry.setId(id);
+        sources.setLibraryRegistry(libraryRegistry);
+        return sourcesRepository.findAll(Example.of(sources));
+
     }
 }
