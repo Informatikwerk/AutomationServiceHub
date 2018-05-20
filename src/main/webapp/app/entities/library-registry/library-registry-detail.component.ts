@@ -45,10 +45,9 @@ export class LibraryRegistryDetailComponent implements OnInit, OnDestroy {
     }
 
     loadSources(id) {
-        this.sourcesService.query().subscribe(
+        this.sourcesService.findByLibraryId(id).subscribe(
             (res: HttpResponse<Sources[]>) => {
                 this.sources = res.body;
-                // console.log("souruces ", this.sources);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
