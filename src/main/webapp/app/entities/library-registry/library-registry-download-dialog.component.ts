@@ -43,6 +43,21 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
             this.realmKeyGeneratorService.get());
     }
 
+    copyRealmKey() {
+        console.log('Copied!');
+        let selBox = document.createElement('textarea');
+        selBox.style.position = 'fixed';
+        selBox.style.left = '0';
+        selBox.style.top = '0';
+        selBox.style.opacity = '0';
+        selBox.value = this.realmKey;
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+        document.execCommand('copy');
+        document.body.removeChild(selBox);
+    }
+
     download() {
         console.log('realmkey ', this.realmKey);
         // this.isSaving = true;

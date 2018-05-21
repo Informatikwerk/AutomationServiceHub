@@ -15,18 +15,20 @@
                    [(ngModel)]="libraryRegistry.id" readonly/>
         </div>
         <div class="form-group">
-            <div class="row">
-                <div class="col-8">
-                    <label class="form-control-label" jhiTranslate="automationServiceHubApp.libraryRegistry.realmKey"
-                           for="field_realm_key">Realm key</label>
-                    <input type="text" class="form-control" name="realm_key" id="field_realm_key"
-                           [(ngModel)]="realmKey"/>
-                </div>
-                <div class="col-4 d-flex">
-                    <button type="button" class="btn btn-primary" (click)="generateRealmKey()">
-                        <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.generateRealmKey">Generate RealmKey</span>
-                    </button>
-                </div>
+            <div class="row ml-1 mr-1">
+                <label class="form-control-label" jhiTranslate="automationServiceHubApp.libraryRegistry.realmKey"
+                       for="field_realm_key">Realm key</label>
+                <input type="text" class="form-control" name="realm_key" id="field_realm_key"
+                       [(ngModel)]="realmKey"/>
+            </div>
+            <div class="row mx-auto">
+                <button type="button" class="btn btn-primary m-1" (click)="generateRealmKey()">
+                    <span class="fa fa-refresh"></span>&nbsp;<span jhiTranslate="entity.action.generateRealmKey">Generate RealmKey</span>
+                </button>
+                <button type="button" class="btn btn-secondary m-1" (click)="copyRealmKey()">
+                    <span class="fa fa-copy"></span>&nbsp;<span
+                        jhiTranslate="entity.action.copyRealmKey">Copy RealmKey</span>
+                </button>
             </div>
         </div>
 
