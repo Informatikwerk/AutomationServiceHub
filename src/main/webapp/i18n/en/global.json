@@ -104,7 +104,8 @@
             "open": "Open",
             "save": "Save",
             "view": "View",
-            "download": "Download"
+            "download": "Download",
+            "generateRealmKey": "Generate RealmKey"
         },
         "detail": {
             "field": "Field",
