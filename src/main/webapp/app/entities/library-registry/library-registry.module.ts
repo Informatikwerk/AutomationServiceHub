@@ -19,6 +19,7 @@ import {
     LibraryRegistryDownloadDialogComponent,
     LibraryRegistryDownloadPopupComponent
 } from './library-registry-download-dialog.component';
+import { RealmKeyGeneratorService } from './realm-key-generator.service';
 
 const ENTITY_STATES = [
     ...libraryRegistryRoute,
@@ -52,7 +53,8 @@ const ENTITY_STATES = [
     ],
     providers: [
         LibraryRegistryService,
-        LibraryRegistryPopupService
+        LibraryRegistryPopupService,
+        RealmKeyGeneratorService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

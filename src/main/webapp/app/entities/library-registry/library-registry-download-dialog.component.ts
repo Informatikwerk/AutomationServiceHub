@@ -9,8 +9,9 @@ import { JhiEventManager } from 'ng-jhipster';
 import { LibraryRegistry } from './library-registry.model';
 import { LibraryRegistryPopupService } from './library-registry-popup.service';
 import { LibraryRegistryService } from './library-registry.service';
-import { Sources, SourcesService } from '../sources';
+import { SourcesService } from '../sources';
 import { Principal } from '../../shared';
+import { RealmKeyGeneratorService } from './realm-key-generator.service';
 
 @Component({
     selector: 'jhi-library-registry-download-dialog',
@@ -19,6 +20,7 @@ import { Principal } from '../../shared';
 export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     libraryRegistry: LibraryRegistry;
+    realmKey: string;
     sourceCodes: any [] = new Array();
     isSaving: boolean;
     files: File[];
@@ -28,7 +30,8 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
         private libraryRegistryService: LibraryRegistryService,
         private sourcesService: SourcesService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private realmKeyGeneratorService: RealmKeyGeneratorService
     ) {
     }
 
@@ -44,63 +47,33 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
         this.activeModal.dismiss('cancel');
     }
 
-    save() {
-        this.isSaving = true;
-        if (this.libraryRegistry.id !== undefined) {
-            this.subscribeToSaveResponse(
-                this.libraryRegistryService.update(this.libraryRegistry));
-        } else {
-            this.subscribeToSaveResponse(
-                this.libraryRegistryService.create(this.libraryRegistry));
-        }
+    generateRealmKey() {
+        this.subscribeToSaveResponse(
+            this.realmKeyGeneratorService.get());
     }
 
-    onFileChange(event) {
-        if (event.target.files && event.target.files.length) {
-            const files = event.target.files;
-            for (const singleFile of files) {
-                this.setupReader(singleFile);
-            }
-        }
+    download() {
+        console.log('realmkey ', this.realmKey);
+        // this.isSaving = true;
+        // this.subscribeToSaveResponse(
+        //     this.realmKeyGeneratorService.get();
     }
 
-    private subscribeToSaveResponseSources(result: Observable<HttpResponse<Sources>>) {
-        result.subscribe((res: HttpResponse<Sources>) =>
-            this.onSaveSuccessSources(res.body), (res: HttpErrorResponse) => this.onSaveError());
-    }
 
-    private onSaveSuccessSources(result: Sources) {
-        this.eventManager.broadcast({name: 'sourcesListModification', content: 'OK'});
-        this.isSaving = false;
-        this.activeModal.dismiss(result);
-    }
-
-    private setupReader(file) {
-        const reader = new FileReader();
-        let sources = this.sourceCodes;
-        reader.onload = function (e) {
-            const sourceCode = reader.result;
-            sources.push({name: file.name, text: sourceCode});
-        };
-        reader.readAsText(file);
-    }
-
-    private subscribeToSaveResponse(result: Observable<HttpResponse<LibraryRegistry>>) {
-        result.subscribe((res: HttpResponse<LibraryRegistry>) =>
+    private subscribeToSaveResponse(result: Observable<HttpResponse<string>>) {
+        result.subscribe((res: HttpResponse<string>) =>
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: LibraryRegistry) {
-        for (const file of this.sourceCodes) {
-            this.subscribeToSaveResponseSources(
-                this.sourcesService.create(new Sources(undefined, file.text, file.name, result)));
-        }
+    private onSaveSuccess(result: string) {
+        console.log("result is ", result);
         this.eventManager.broadcast({name: 'libraryRegistryListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
     private onSaveError() {
+        console.log("errrpr")
         this.isSaving = false;
     }
 }
@@ -120,14 +93,10 @@ export class LibraryRegistryDownloadPopupComponent implements OnInit, OnDestroy 
     }
 
     ngOnInit() {
-        console.log('elo melo');
         this.routeSub = this.route.params.subscribe((params) => {
             if (params['id']) {
                 this.libraryRegistryPopupService
                     .open(LibraryRegistryDownloadDialogComponent as Component, params['id']);
-            } else {
-                this.libraryRegistryPopupService
-                    .open(LibraryRegistryDownloadDialogComponent as Component);
             }
         });
     }
