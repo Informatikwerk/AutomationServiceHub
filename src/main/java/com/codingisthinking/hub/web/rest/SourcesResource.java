@@ -5,9 +5,11 @@ import com.codingisthinking.hub.domain.LibraryRegistry;
 import com.codingisthinking.hub.domain.Sources;
 
 import com.codingisthinking.hub.repository.SourcesRepository;
+import com.codingisthinking.hub.service.DownloadService;
 import com.codingisthinking.hub.web.rest.errors.BadRequestAlertException;
 import com.codingisthinking.hub.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.apache.velocity.app.Velocity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Example;
@@ -34,8 +36,11 @@ public class SourcesResource {
 
     private final SourcesRepository sourcesRepository;
 
-    public SourcesResource(SourcesRepository sourcesRepository) {
+    private final DownloadService downloadService;
+
+    public SourcesResource(SourcesRepository sourcesRepository, DownloadService downloadService) {
         this.sourcesRepository = sourcesRepository;
+        this.downloadService = downloadService;
     }
 
     /**
@@ -102,6 +107,7 @@ public class SourcesResource {
     @Timed
     public ResponseEntity<Sources> getSources(@PathVariable Long id) {
         log.debug("REST request to get Sources : {}", id);
+        downloadService.downloadSources(id);
         Sources sources = sourcesRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(sources));
     }

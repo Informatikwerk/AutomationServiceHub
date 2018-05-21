@@ -210,6 +210,7 @@ dependencies {
     optional ("org.springframework.boot:spring-boot-configuration-processor") {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
     }
+    compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 
