@@ -35,7 +35,9 @@ export class LibraryRegistryDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.principal.identity().then((account) => {
+            console.log('acc ', account)
             this.libraryRegistry.author = account.firstName;
+            this.libraryRegistry.userId = account.id;
         });
 
     }

@@ -43,6 +43,10 @@ public class LibraryRegistry implements Serializable {
     @Column(name = "url")
     private String url;
 
+    @NotNull
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -129,6 +133,19 @@ public class LibraryRegistry implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public LibraryRegistry userId(Long userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -161,6 +178,7 @@ public class LibraryRegistry implements Serializable {
             ", platform='" + getPlatform() + "'" +
             ", version='" + getVersion() + "'" +
             ", url='" + getUrl() + "'" +
+            ", userId=" + getUserId() +
             "}";
     }
 }

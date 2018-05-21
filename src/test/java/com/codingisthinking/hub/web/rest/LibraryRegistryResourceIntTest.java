@@ -56,6 +56,9 @@ public class LibraryRegistryResourceIntTest {
     private static final String DEFAULT_URL = "AAAAAAAAAA";
     private static final String UPDATED_URL = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_USER_ID = 1L;
+    private static final Long UPDATED_USER_ID = 2L;
+
     @Autowired
     private LibraryRegistryRepository libraryRegistryRepository;
 
@@ -99,7 +102,8 @@ public class LibraryRegistryResourceIntTest {
             .description(DEFAULT_DESCRIPTION)
             .platform(DEFAULT_PLATFORM)
             .version(DEFAULT_VERSION)
-            .url(DEFAULT_URL);
+            .url(DEFAULT_URL)
+            .userId(DEFAULT_USER_ID);
         return libraryRegistry;
     }
 
@@ -129,6 +133,7 @@ public class LibraryRegistryResourceIntTest {
         assertThat(testLibraryRegistry.getPlatform()).isEqualTo(DEFAULT_PLATFORM);
         assertThat(testLibraryRegistry.getVersion()).isEqualTo(DEFAULT_VERSION);
         assertThat(testLibraryRegistry.getUrl()).isEqualTo(DEFAULT_URL);
+        assertThat(testLibraryRegistry.getUserId()).isEqualTo(DEFAULT_USER_ID);
     }
 
     @Test
@@ -242,6 +247,24 @@ public class LibraryRegistryResourceIntTest {
 
     @Test
     @Transactional
+    public void checkUserIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = libraryRegistryRepository.findAll().size();
+        // set the field null
+        libraryRegistry.setUserId(null);
+
+        // Create the LibraryRegistry, which fails.
+
+        restLibraryRegistryMockMvc.perform(post("/api/library-registries")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(libraryRegistry)))
+            .andExpect(status().isBadRequest());
+
+        List<LibraryRegistry> libraryRegistryList = libraryRegistryRepository.findAll();
+        assertThat(libraryRegistryList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllLibraryRegistries() throws Exception {
         // Initialize the database
         libraryRegistryRepository.saveAndFlush(libraryRegistry);
@@ -256,7 +279,8 @@ public class LibraryRegistryResourceIntTest {
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].platform").value(hasItem(DEFAULT_PLATFORM.toString())))
             .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.toString())))
-            .andExpect(jsonPath("$.[*].url").value(hasItem(DEFAULT_URL.toString())));
+            .andExpect(jsonPath("$.[*].url").value(hasItem(DEFAULT_URL.toString())))
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())));
     }
 
     @Test
@@ -275,7 +299,8 @@ public class LibraryRegistryResourceIntTest {
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.platform").value(DEFAULT_PLATFORM.toString()))
             .andExpect(jsonPath("$.version").value(DEFAULT_VERSION.toString()))
-            .andExpect(jsonPath("$.url").value(DEFAULT_URL.toString()));
+            .andExpect(jsonPath("$.url").value(DEFAULT_URL.toString()))
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()));
     }
 
     @Test
@@ -303,7 +328,8 @@ public class LibraryRegistryResourceIntTest {
             .description(UPDATED_DESCRIPTION)
             .platform(UPDATED_PLATFORM)
             .version(UPDATED_VERSION)
-            .url(UPDATED_URL);
+            .url(UPDATED_URL)
+            .userId(UPDATED_USER_ID);
 
         restLibraryRegistryMockMvc.perform(put("/api/library-registries")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -320,6 +346,7 @@ public class LibraryRegistryResourceIntTest {
         assertThat(testLibraryRegistry.getPlatform()).isEqualTo(UPDATED_PLATFORM);
         assertThat(testLibraryRegistry.getVersion()).isEqualTo(UPDATED_VERSION);
         assertThat(testLibraryRegistry.getUrl()).isEqualTo(UPDATED_URL);
+        assertThat(testLibraryRegistry.getUserId()).isEqualTo(UPDATED_USER_ID);
     }
 
     @Test

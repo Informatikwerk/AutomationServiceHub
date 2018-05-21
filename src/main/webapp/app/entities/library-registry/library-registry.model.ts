@@ -9,6 +9,7 @@ export class LibraryRegistry implements BaseEntity {
         public platform?: string,
         public version?: string,
         public url?: string,
+        public userId?: number
     ) {
     }
 }
