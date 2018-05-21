@@ -121,7 +121,7 @@ public class SourcesResource {
     }
 
     /**
-     * GET  /sources/lib/:id : get the sources for lib "id" .
+     * GET  /sources/lib/:id : get the sources with lib "id" .
      *
      * @param id the id of the lib to retrieve related sources
      * @return the ResponseEntity with status 200 (OK) and with body the sources, or with status 404 (Not Found)
@@ -136,5 +136,23 @@ public class SourcesResource {
         sources.setLibraryRegistry(libraryRegistry);
         return sourcesRepository.findAll(Example.of(sources));
 
+    }
+
+    /**
+     * DELETE  /sources/lib/:id : delete the sources with lib "id".
+     *
+     * @param id the id of the library to delete
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @DeleteMapping("/sources/lib/{id}")
+    @Timed
+    public ResponseEntity<Void> deleteSourcesByLibraryRegistryId(@PathVariable Long id) {
+        log.debug("REST request to delete Sources with lib id: {}", id);
+        Sources sources = new Sources();
+        LibraryRegistry libraryRegistry = new LibraryRegistry();
+        libraryRegistry.setId(id);
+        sources.setLibraryRegistry(libraryRegistry);
+        sourcesRepository.delete(sourcesRepository.findAll(Example.of(sources)));
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

@@ -45,6 +45,11 @@ export class SourcesService {
     }
 
 
+    deleteByLibraryId(id: number): Observable<HttpResponse<any>> {
+        return this.http.delete<any>(`${this.resourceUrl}/lib/${id}`, {observe: 'response'});
+    }
+
+
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, {observe: 'response'});
     }

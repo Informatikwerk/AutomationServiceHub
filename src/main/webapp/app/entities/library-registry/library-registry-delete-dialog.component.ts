@@ -7,6 +7,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { LibraryRegistry } from './library-registry.model';
 import { LibraryRegistryPopupService } from './library-registry-popup.service';
 import { LibraryRegistryService } from './library-registry.service';
+import { SourcesService } from '../sources';
 
 @Component({
     selector: 'jhi-library-registry-delete-dialog',
@@ -18,6 +19,7 @@ export class LibraryRegistryDeleteDialogComponent {
 
     constructor(
         private libraryRegistryService: LibraryRegistryService,
+        private sourcesService: SourcesService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
     ) {
@@ -28,12 +30,14 @@ export class LibraryRegistryDeleteDialogComponent {
     }
 
     confirmDelete(id: number) {
-        this.libraryRegistryService.delete(id).subscribe((response) => {
-            this.eventManager.broadcast({
-                name: 'libraryRegistryListModification',
-                content: 'Deleted an libraryRegistry'
+        this.sourcesService.deleteByLibraryId(id).subscribe((sourcesResponce) => {
+            this.libraryRegistryService.delete(id).subscribe((libararyResponse) => {
+                this.eventManager.broadcast({
+                    name: 'libraryRegistryListModification',
+                    content: 'Deleted an libraryRegistry'
+                });
+                this.activeModal.dismiss(true);
             });
-            this.activeModal.dismiss(true);
         });
     }
 }
@@ -49,7 +53,8 @@ export class LibraryRegistryDeletePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private libraryRegistryPopupService: LibraryRegistryPopupService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
