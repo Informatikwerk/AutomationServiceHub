@@ -5,6 +5,7 @@ import { LibraryRegistryComponent } from './library-registry.component';
 import { LibraryRegistryDetailComponent } from './library-registry-detail.component';
 import { LibraryRegistryPopupComponent } from './library-registry-dialog.component';
 import { LibraryRegistryDeletePopupComponent } from './library-registry-delete-dialog.component';
+import { LibraryRegistryDownloadPopupComponent } from './library-registry-download-dialog.component';
 
 export const libraryRegistryRoute: Routes = [
     {
@@ -43,6 +44,16 @@ export const libraryRegistryPopupRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'automationServiceHubApp.libraryRegistry.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'library-registry/:id/download',
+        component: LibraryRegistryDownloadPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'automationServiceHubApp.libraryRegistry.home.download'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

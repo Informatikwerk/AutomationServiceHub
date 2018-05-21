@@ -15,6 +15,10 @@ import {
     libraryRegistryRoute,
     libraryRegistryPopupRoute
 } from './';
+import {
+    LibraryRegistryDownloadDialogComponent,
+    LibraryRegistryDownloadPopupComponent
+} from './library-registry-download-dialog.component';
 
 const ENTITY_STATES = [
     ...libraryRegistryRoute,
@@ -33,14 +37,18 @@ const ENTITY_STATES = [
         LibraryRegistryDialogComponent,
         LibraryRegistryDeleteDialogComponent,
         LibraryRegistryPopupComponent,
-        LibraryRegistryDeletePopupComponent
+        LibraryRegistryDeletePopupComponent,
+        LibraryRegistryDownloadPopupComponent,
+        LibraryRegistryDownloadDialogComponent
     ],
     entryComponents: [
         LibraryRegistryComponent,
         LibraryRegistryDialogComponent,
         LibraryRegistryPopupComponent,
         LibraryRegistryDeleteDialogComponent,
-        LibraryRegistryDeletePopupComponent
+        LibraryRegistryDeletePopupComponent,
+        LibraryRegistryDownloadPopupComponent,
+        LibraryRegistryDownloadDialogComponent
     ],
     providers: [
         LibraryRegistryService,

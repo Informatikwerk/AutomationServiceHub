@@ -5,7 +5,8 @@
             "home": {
                 "title": "Library Registries",
                 "createLabel": "Create a new Library Registry",
-                "createOrEditLabel": "Create or edit a Library Registry"
+                "createOrEditLabel": "Create or edit a Library Registry",
+                "download":"Download"
             },
             "created": "A new Library Registry is created with identifier {{ param }}",
             "updated": "A Library Registry is updated with identifier {{ param }}",
