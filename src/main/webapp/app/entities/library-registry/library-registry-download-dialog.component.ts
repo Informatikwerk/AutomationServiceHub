@@ -21,15 +21,10 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     libraryRegistry: LibraryRegistry;
     realmKey: string;
-    sourceCodes: any [] = new Array();
     isSaving: boolean;
-    files: File[];
 
     constructor(
         public activeModal: NgbActiveModal,
-        private libraryRegistryService: LibraryRegistryService,
-        private sourcesService: SourcesService,
-        private eventManager: JhiEventManager,
         private principal: Principal,
         private realmKeyGeneratorService: RealmKeyGeneratorService
     ) {
@@ -37,10 +32,6 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.principal.identity().then((account) => {
-            this.libraryRegistry.author = account.firstName;
-        });
-
     }
 
     clear() {
@@ -48,7 +39,7 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
     }
 
     generateRealmKey() {
-        this.subscribeToSaveResponse(
+        this.subscribeToResponse(
             this.realmKeyGeneratorService.get());
     }
 
@@ -60,20 +51,12 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
     }
 
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<string>>) {
-        result.subscribe((res: HttpResponse<string>) =>
-            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
+    private subscribeToResponse(result: Observable<string>) {
+        result.subscribe(result => this.onSuccess(result));
     }
 
-    private onSaveSuccess(result: string) {
-        console.log("result is ", result);
-        this.eventManager.broadcast({name: 'libraryRegistryListModification', content: 'OK'});
-        this.isSaving = false;
-        this.activeModal.dismiss(result);
-    }
-
-    private onSaveError() {
-        console.log("errrpr")
+    private onSuccess(result) {
+        this.realmKey = result;
         this.isSaving = false;
     }
 }
