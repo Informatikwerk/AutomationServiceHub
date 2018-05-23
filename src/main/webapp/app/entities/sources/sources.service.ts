@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Sources } from './sources.model';
 import { createRequestOption } from '../../shared';
@@ -13,7 +14,7 @@ export class SourcesService {
 
     private resourceUrl = SERVER_API_URL + 'api/sources';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
     }
 
     create(sources: Sources): Observable<EntityResponseType> {
@@ -31,6 +32,10 @@ export class SourcesService {
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<Sources>(`${this.resourceUrl}/${id}`, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    getZip(id: number) {
+        return this.http.get(`${this.resourceUrl}/lib/zip/${id}`, {responseType: 'blob'});
     }
 
     query(req?: any): Observable<HttpResponse<Sources[]>> {

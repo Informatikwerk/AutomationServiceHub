@@ -1,17 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-
+import { saveAs } from 'file-saver/FileSaver';
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
-
 import { LibraryRegistry } from './library-registry.model';
 import { LibraryRegistryPopupService } from './library-registry-popup.service';
-import { LibraryRegistryService } from './library-registry.service';
-import { SourcesService } from '../sources';
 import { Principal } from '../../shared';
 import { RealmKeyGeneratorService } from './realm-key-generator.service';
+import { SourcesService } from '../sources';
 
 @Component({
     selector: 'jhi-library-registry-download-dialog',
@@ -26,6 +22,7 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private principal: Principal,
+        private sourcesService: SourcesService,
         private realmKeyGeneratorService: RealmKeyGeneratorService
     ) {
     }
@@ -60,9 +57,17 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     download() {
         console.log('realmkey ', this.realmKey);
+        this.sourcesService.getZip(this.libraryRegistry.id).subscribe(res =>
+            saveAs(res, 'test.zip'));
+        // this.downloadFile(data));
         // this.isSaving = true;
         // this.subscribeToSaveResponse(
         //     this.realmKeyGeneratorService.get();
+    }
+
+    downloadFile(blob) {
+        var url = window.URL.createObjectURL(blob);
+        window.open(url);
     }
 
 
