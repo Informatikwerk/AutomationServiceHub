@@ -9,14 +9,17 @@ import com.codingisthinking.hub.service.DownloadService;
 import com.codingisthinking.hub.web.rest.errors.BadRequestAlertException;
 import com.codingisthinking.hub.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.apache.velocity.app.Velocity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Example;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -107,7 +110,6 @@ public class SourcesResource {
     @Timed
     public ResponseEntity<Sources> getSources(@PathVariable Long id) {
         log.debug("REST request to get Sources : {}", id);
-        downloadService.downloadSources(id);
         Sources sources = sourcesRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(sources));
     }
@@ -141,7 +143,6 @@ public class SourcesResource {
         libraryRegistry.setId(id);
         sources.setLibraryRegistry(libraryRegistry);
         return sourcesRepository.findAll(Example.of(sources));
-
     }
 
     /**
@@ -160,5 +161,35 @@ public class SourcesResource {
         sources.setLibraryRegistry(libraryRegistry);
         sourcesRepository.delete(sourcesRepository.findAll(Example.of(sources)));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+
+    /**
+     * GET  /sources/lib/:id : get the sources with lib "id" in zip file format .
+     *
+     * @param id the id of the lib to retrieve related sources
+     * @return the ResponseEntity with status 200 (OK) and with body the sources, or with status 404 (Not Found)
+     */
+    @GetMapping(value="/sources/lib/{id}/zip")
+    @Timed
+    public ResponseEntity<ByteArrayResource> getZipedSourcesByLibraryRegistryId(@PathVariable Long id) {
+        log.debug("REST request to get Sources for given lib id in zip format: {}", id);
+        Sources sources = new Sources();
+        LibraryRegistry libraryRegistry = new LibraryRegistry();
+        libraryRegistry.setId(id);
+        sources.setLibraryRegistry(libraryRegistry);
+        byte[] zipBytes = null;
+        ByteArrayResource resource = null;
+        try {
+            zipBytes = downloadService.getZip(sourcesRepository.findAll(Example.of(sources)));
+            resource = new ByteArrayResource(zipBytes);
+        } catch (IOException e) {
+            System.out.println("Exception on zip process.");
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=" + "sources.zip")
+            .contentType(MediaType.APPLICATION_OCTET_STREAM).contentLength(zipBytes.length)
+            .body(resource);
     }
 }
