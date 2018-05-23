@@ -9,15 +9,18 @@ import com.codingisthinking.hub.service.DownloadService;
 import com.codingisthinking.hub.web.rest.errors.BadRequestAlertException;
 import com.codingisthinking.hub.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.apache.commons.io.IOUtils;
+import org.apache.velocity.app.Velocity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Example;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.*;
 import java.net.URI;
@@ -25,6 +28,8 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * REST controller for managing Sources.
@@ -170,26 +175,21 @@ public class SourcesResource {
      * @param id the id of the lib to retrieve related sources
      * @return the ResponseEntity with status 200 (OK) and with body the sources, or with status 404 (Not Found)
      */
-    @GetMapping(value="/sources/lib/{id}/zip")
+    @GetMapping(value="/sources/lib/zip/{id}", produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<ByteArrayResource> getZipedSourcesByLibraryRegistryId(@PathVariable Long id) {
+    public @ResponseBody byte[] getZipedSourcesByLibraryRegistryId(@PathVariable Long id) {
         log.debug("REST request to get Sources for given lib id in zip format: {}", id);
         Sources sources = new Sources();
         LibraryRegistry libraryRegistry = new LibraryRegistry();
         libraryRegistry.setId(id);
         sources.setLibraryRegistry(libraryRegistry);
         byte[] zipBytes = null;
-        ByteArrayResource resource = null;
         try {
             zipBytes = downloadService.getZip(sourcesRepository.findAll(Example.of(sources)));
-            resource = new ByteArrayResource(zipBytes);
         } catch (IOException e) {
             System.out.println("Exception on zip process.");
             e.printStackTrace();
         }
-        return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=" + "sources.zip")
-            .contentType(MediaType.APPLICATION_OCTET_STREAM).contentLength(zipBytes.length)
-            .body(resource);
+        return zipBytes;
     }
 }
