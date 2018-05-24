@@ -14,7 +14,7 @@ export class RealmKeyGeneratorService {
 
     get() {
         console.log("request");
-        const authToken = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyNjk5MjIzNX0.CY2sJ3yuRTRQumvPH9-u0Gn8Ba0Up0a4YT0KbznRUEOtE1Z_ze74gfpy_zbxbg7IqiI_1qVfxe0qzVk1HnV9Jg';
+        const authToken = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyNzIyNzMzM30.RDzUO6b00uxV4ozAim3Th8NxfkC78WZi-XB6qezr6HCTSCp7XRf1h9ZgCnJLMwBNiDfQbfp0WFg7xrUc3WbLxA';
 
         return this.http.get(this.resourceUrl, {
             responseType: 'text' as 'text',
