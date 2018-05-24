@@ -173,19 +173,21 @@ public class SourcesResource {
      * GET  /sources/lib/:id : get the sources with lib "id" in zip file format .
      *
      * @param id the id of the lib to retrieve related sources
+     * @param realmKey the realmKey of the user
      * @return the ResponseEntity with status 200 (OK) and with body the sources, or with status 404 (Not Found)
      */
     @GetMapping(value="/sources/lib/zip/{id}", produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public @ResponseBody byte[] getZipedSourcesByLibraryRegistryId(@PathVariable Long id) {
+    public @ResponseBody byte[] getZipedSourcesByLibraryRegistryId(@PathVariable Long id, @RequestParam String realmKey) {
         log.debug("REST request to get Sources for given lib id in zip format: {}", id);
+        log.debug("REST request to get Sources for given REALMKEY: {}", realmKey);
         Sources sources = new Sources();
         LibraryRegistry libraryRegistry = new LibraryRegistry();
         libraryRegistry.setId(id);
         sources.setLibraryRegistry(libraryRegistry);
         byte[] zipBytes = null;
         try {
-            zipBytes = downloadService.getZip(sourcesRepository.findAll(Example.of(sources)));
+            zipBytes = downloadService.getZip(sourcesRepository.findAll(Example.of(sources)), realmKey);
         } catch (IOException e) {
             System.out.println("Exception on zip process.");
             e.printStackTrace();

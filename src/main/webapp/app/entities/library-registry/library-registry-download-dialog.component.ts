@@ -56,22 +56,11 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
     }
 
     download() {
-        console.log('realmkey ', this.realmKey);
-        this.sourcesService.getZip(this.libraryRegistry.id).subscribe(res => {
+        this.sourcesService.getZip(this.libraryRegistry.id, this.realmKey).subscribe(res => {
             console.log('blob ', res);
             saveAs(res, this.libraryRegistry.name + '.zip');
         });
-        // this.downloadFile(data));
-        // this.isSaving = true;
-        // this.subscribeToSaveResponse(
-        //     this.realmKeyGeneratorService.get();
     }
-
-    downloadFile(blob) {
-        var url = window.URL.createObjectURL(blob);
-        window.open(url);
-    }
-
 
     private subscribeToResponse(result: Observable<string>) {
         result.subscribe(result => this.onSuccess(result));

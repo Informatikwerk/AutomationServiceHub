@@ -34,8 +34,10 @@ export class SourcesService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    getZip(id: number) {
-        return this.http.get(`${this.resourceUrl}/lib/zip/${id}`, {responseType: 'blob'});
+    getZip(id: number, realmKey: string) {
+        return this.http.get(`${this.resourceUrl}/lib/zip/${id}?realmKey=${realmKey}`, {
+            responseType: 'blob'
+        });
     }
 
     query(req?: any): Observable<HttpResponse<Sources[]>> {

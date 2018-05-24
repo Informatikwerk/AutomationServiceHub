@@ -20,13 +20,13 @@ import java.util.zip.ZipOutputStream;
 @Transactional
 public class DownloadService {
 
-    public byte[] getZip(List<Sources> sourcesList) throws IOException {
+    public byte[] getZip(List<Sources> sourcesList, String realmKey) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ZipOutputStream out = new ZipOutputStream(bos);
         for(Sources sourceFile:sourcesList){
             ZipEntry e = new ZipEntry(sourceFile.getFileName());
             out.putNextEntry(e);
-            byte[] data = replacePlaceholderWithVelocity(sourceFile.getSourceCode(), "i1231312123").getBytes();
+            byte[] data = replacePlaceholderWithVelocity(sourceFile.getSourceCode(), realmKey).getBytes();
             out.write(data, 0, data.length);
             out.closeEntry();
         }
@@ -36,27 +36,22 @@ public class DownloadService {
     }
 
     private String replacePlaceholderWithVelocity(String sourceCode, String realmKey) {
-        // Initialize the engine.
         VelocityEngine engine = new VelocityEngine();
         engine.setProperty(Velocity.RESOURCE_LOADER, "string");
         engine.addProperty("string.resource.loader.class", StringResourceLoader.class.getName());
         engine.addProperty("string.resource.loader.repository.static", "false");
         engine.init();
 
-        // Initialize my template repository. You can replace the "Hello $w" with your String.
         StringResourceRepository repo = (StringResourceRepository) engine.getApplicationAttribute(StringResourceLoader.REPOSITORY_NAME_DEFAULT);
         repo.putStringResource("sourceCode", sourceCode);
 
-        // Set parameters for my template.
         VelocityContext context = new VelocityContext();
         context.put("realmKey_holder",realmKey);
 
-        // Get and merge the template with my parameters.
         Template template = engine.getTemplate("sourceCode");
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
 
-        // Show the result.
         return writer.toString();
     }
 }
