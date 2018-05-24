@@ -42,6 +42,15 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
+                                *ngIf="admin || currentAccount.id === libraryRegistry.userId"
+                                [routerLink]="['/', { outlets: { popup: 'library-registry/'+ libraryRegistry.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
                                 [routerLink]="['../library-registry', libraryRegistry.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
@@ -52,14 +61,6 @@
                                 class="btn btn-success btn-sm">
                             <span class="fa fa-download"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.download">Download</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'library-registry/'+ libraryRegistry.id + '/edit'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'library-registry/'+ libraryRegistry.id + '/delete'} }]"

@@ -5,7 +5,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { LibraryRegistry } from './library-registry.model';
 import { LibraryRegistryService } from './library-registry.service';
-import { Principal } from '../../shared';
+import { Principal, User } from '../../shared';
 
 @Component({
     selector: 'jhi-library-registry',
@@ -15,6 +15,7 @@ export class LibraryRegistryComponent implements OnInit, OnDestroy {
     libraryRegistries: LibraryRegistry[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    admin = false;
 
     constructor(
         private libraryRegistryService: LibraryRegistryService,
@@ -35,7 +36,8 @@ export class LibraryRegistryComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then((account) => {
+        this.principal.identity().then((account: User) => {
+            this.admin = account.authorities.indexOf('ROLE_ADMIN') !== -1;
             this.currentAccount = account;
         });
         this.registerChangeInLibraryRegistries();
