@@ -17,7 +17,7 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     libraryRegistry: LibraryRegistry;
     realmKey: string;
-    isSaving: boolean;
+    downloadEnabled: boolean;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -28,7 +28,7 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.isSaving = false;
+        this.downloadEnabled = false;
     }
 
     clear() {
@@ -68,7 +68,7 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     private onSuccess(result) {
         this.realmKey = result;
-        this.isSaving = false;
+        this.downloadEnabled = false;
     }
 }
 

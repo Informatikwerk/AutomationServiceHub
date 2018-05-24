@@ -19,7 +19,7 @@
                 <label class="form-control-label" jhiTranslate="automationServiceHubApp.libraryRegistry.realmKey"
                        for="field_realm_key">Realm key</label>
                 <input type="text" class="form-control" name="realm_key" id="field_realm_key"
-                       [(ngModel)]="realmKey"/>
+                       [(ngModel)]="realmKey" required/>
             </div>
             <div class="row mx-auto">
                 <button type="button" class="btn btn-primary m-1" (click)="generateRealmKey()">
@@ -37,7 +37,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-success">
+        <button type="submit" [disabled]="editForm.form.invalid || downloadEnabled" class="btn btn-success">
             <span class="fa fa-download"></span>&nbsp;<span jhiTranslate="entity.action.download">Download</span>
         </button>
     </div>
