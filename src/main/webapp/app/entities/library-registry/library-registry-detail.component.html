@@ -34,14 +34,14 @@
         </dd>
     </dl>
 
-    <button type=" submit
-        "
+    <button type=" submit"
             (click)="previousState()"
             class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
     <button type="button"
+            *ngIf="admin || currentAccount.id === libraryRegistry.userId"
             [routerLink]="['/', { outlets: { popup: 'library-registry/'+ libraryRegistry.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"

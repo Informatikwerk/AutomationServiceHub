@@ -8,6 +8,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { LibraryRegistry } from './library-registry.model';
 import { LibraryRegistryService } from './library-registry.service';
 import { Sources, SourcesService } from '../sources';
+import { Principal, User } from '../../shared';
 
 @Component({
     selector: 'jhi-library-registry-detail',
@@ -19,13 +20,16 @@ export class LibraryRegistryDetailComponent implements OnInit, OnDestroy {
     sources: Sources[];
     private subscription: Subscription;
     private eventSubscriber: Subscription;
+    currentAccount: User;
+    admin = false;
 
     constructor(
         private eventManager: JhiEventManager,
         private libraryRegistryService: LibraryRegistryService,
         private route: ActivatedRoute,
         private sourcesService: SourcesService,
-        private jhiAlertService: JhiAlertService
+        private jhiAlertService: JhiAlertService,
+        private principal: Principal
     ) {
     }
 
@@ -33,6 +37,10 @@ export class LibraryRegistryDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
             this.loadSources(params['id'])
+        });
+        this.principal.identity().then((account: User) => {
+            this.admin = account.authorities.indexOf('ROLE_ADMIN') !== -1;
+            this.currentAccount = account;
         });
         this.registerChangeInLibraryRegistries();
     }
