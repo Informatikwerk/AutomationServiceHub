@@ -2,6 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Subscription } from 'rxjs/Subscription';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-alert-error',
@@ -12,14 +14,26 @@ import { Subscription } from 'rxjs/Subscription';
                     <pre [innerHTML]="alert.msg"></pre>
                 </ngb-alert>
             </div>
-        </div>`
+        </div>
+        <div *ngIf="authError" class="alert alert-warning">
+            <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
+            <a class="alert-link" (click)="register()" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+        </div>
+`
 })
 export class JhiAlertErrorComponent implements OnDestroy {
 
     alerts: any[];
     cleanHttpErrorListener: Subscription;
+    authError = false;
+
     // tslint:disable-next-line: no-unused-variable
-    constructor(private alertService: JhiAlertService, private eventManager: JhiEventManager, private translateService: TranslateService) {
+    constructor(
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager,
+        private translateService: TranslateService,
+        private router: Router,
+        public activeModal: NgbActiveModal) {
         this.alerts = [];
 
         this.cleanHttpErrorListener = eventManager.subscribe('automationServiceHubApp.httpError', (response) => {
@@ -44,7 +58,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
                     });
                     if (errorHeader) {
                         const entityName = translateService.instant('global.menu.entities.' + entityKey);
-                        this.addErrorAlert(errorHeader, errorHeader, { entityName });
+                        this.addErrorAlert(errorHeader, errorHeader, {entityName});
                     } else if (httpErrorResponse.error !== '' && httpErrorResponse.error.fieldErrors) {
                         const fieldErrors = httpErrorResponse.error.fieldErrors;
                         for (i = 0; i < fieldErrors.length; i++) {
@@ -54,7 +68,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
                             const fieldName = translateService.instant('automationServiceHubApp.' +
                                 fieldError.objectName + '.' + convertedField);
                             this.addErrorAlert(
-                                'Error on field "' + fieldName + '"', 'error.' + fieldError.message, { fieldName });
+                                'Error on field "' + fieldName + '"', 'error.' + fieldError.message, {fieldName});
                         }
                     } else if (httpErrorResponse.error !== '' && httpErrorResponse.error.message) {
                         this.addErrorAlert(httpErrorResponse.error.message, httpErrorResponse.error.message, httpErrorResponse.error.params);
@@ -63,6 +77,11 @@ export class JhiAlertErrorComponent implements OnDestroy {
                     }
                     break;
 
+                case 401:
+                    if (httpErrorResponse.statusText === 'Unauthorized') {
+                        this.authError = true;
+                        break;
+                    }
                 case 404:
                     this.addErrorAlert('Not found', 'error.url.not.found');
                     break;
@@ -99,5 +118,10 @@ export class JhiAlertErrorComponent implements OnDestroy {
                 this.alerts
             )
         );
+    }
+
+    register() {
+        this.activeModal.dismiss('to state register');
+        this.router.navigate(['/register']);
     }
 }

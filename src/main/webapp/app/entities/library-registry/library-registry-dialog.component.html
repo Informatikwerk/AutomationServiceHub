@@ -86,12 +86,12 @@
         </div>
         <div class="form-group" [hidden]="libraryRegistry.id">
             <label class="form-control-label" jhiTranslate="automationServiceHubApp.sources.sourceCode"
-                   for="field_source_code">Source code</label>
-            <input type="file" multiple class="form-control" name="source-code" [(ngModel)]="files"
-                   id="field_source_code" (change)="onFileChange($event)" [required]="!libraryRegistry.id"/>
-            <div [hidden]="!(editForm.controls.source-code?.dirty && editForm.controls.source-code?.invalid)">
+                   for="field_sourceCode">Source code</label>
+            <input type="file" multiple class="form-control" name="sourceCode" [(ngModel)]="files"
+                   id="field_sourceCode" (change)="onFileChange($event)" [required]="!libraryRegistry.id"/>
+            <div [hidden]="!(editForm.controls.sourceCode?.dirty && editForm.controls.sourceCode?.invalid)">
                 <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.source-code?.errors?.required"
+                       [hidden]="!editForm.controls.sourceCode?.errors?.required"
                        jhiTranslate="entity.validation.required">
                     This field is required.
                 </small>
