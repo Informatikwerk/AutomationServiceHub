@@ -12,7 +12,7 @@ export const libraryRegistryRoute: Routes = [
         path: 'library-registry',
         component: LibraryRegistryComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'automationServiceHubApp.libraryRegistry.home.title'
         },
         canActivate: [UserRouteAccessService]

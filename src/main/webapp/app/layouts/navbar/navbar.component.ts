@@ -2,17 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
-
 import { ProfileService } from '../profiles/profile.service';
 import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from '../../shared';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { VERSION } from '../../app.constants';
-import { NewLibraryModalComponent } from '../../shared/new-library-modal/new-library-modal.component';
-import {
-    LibraryRegistryDialogComponent,
-    LibraryRegistryPopupComponent
-} from '../../entities/library-registry/library-registry-dialog.component';
+import { LibraryRegistryDialogComponent } from '../../entities/library-registry/library-registry-dialog.component';
 import { LibraryRegistryPopupService } from '../../entities/library-registry/library-registry-popup.service';
 
 @Component({

@@ -3,33 +3,23 @@ package com.codingisthinking.hub.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.codingisthinking.hub.domain.LibraryRegistry;
 import com.codingisthinking.hub.domain.Sources;
-
 import com.codingisthinking.hub.repository.SourcesRepository;
 import com.codingisthinking.hub.service.DownloadService;
 import com.codingisthinking.hub.web.rest.errors.BadRequestAlertException;
 import com.codingisthinking.hub.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.apache.commons.io.IOUtils;
-import org.apache.velocity.app.Velocity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Example;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 /**
  * REST controller for managing Sources.

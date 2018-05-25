@@ -37,8 +37,10 @@ export class LibraryRegistryComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account: User) => {
-            this.admin = account.authorities.indexOf('ROLE_ADMIN') !== -1;
-            this.currentAccount = account;
+            if (account != null) {
+                this.admin = account.authorities.indexOf('ROLE_ADMIN') !== -1;
+                this.currentAccount = account;
+            }
         });
         this.registerChangeInLibraryRegistries();
     }
