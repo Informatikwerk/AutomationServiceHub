@@ -39,8 +39,10 @@ export class LibraryRegistryDetailComponent implements OnInit, OnDestroy {
             this.loadSources(params['id'])
         });
         this.principal.identity().then((account: User) => {
-            this.admin = account.authorities.indexOf('ROLE_ADMIN') !== -1;
-            this.currentAccount = account;
+            if (account != null) {
+                this.admin = account.authorities.indexOf('ROLE_ADMIN') !== -1;
+                this.currentAccount = account;
+            }
         });
         this.registerChangeInLibraryRegistries();
     }
@@ -49,6 +51,7 @@ export class LibraryRegistryDetailComponent implements OnInit, OnDestroy {
         this.libraryRegistryService.find(id)
             .subscribe((libraryRegistryResponse: HttpResponse<LibraryRegistry>) => {
                 this.libraryRegistry = libraryRegistryResponse.body;
+                console.log('lib ', this.libraryRegistry);
             });
     }
 

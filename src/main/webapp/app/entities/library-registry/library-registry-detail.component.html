@@ -41,7 +41,7 @@
     </button>
 
     <button type="button"
-            *ngIf="admin || currentAccount.id === libraryRegistry.userId"
+            *ngIf="admin || currentAccount?.id === libraryRegistry.userId"
             [routerLink]="['/', { outlets: { popup: 'library-registry/'+ libraryRegistry.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"

@@ -20,7 +20,7 @@ export const libraryRegistryRoute: Routes = [
         path: 'library-registry/:id',
         component: LibraryRegistryDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'automationServiceHubApp.libraryRegistry.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -52,7 +52,7 @@ export const libraryRegistryPopupRoute: Routes = [
         path: 'library-registry/:id/download',
         component: LibraryRegistryDownloadPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'automationServiceHubApp.libraryRegistry.home.download'
         },
         canActivate: [UserRouteAccessService],

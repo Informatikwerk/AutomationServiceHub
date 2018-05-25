@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { LibraryRegistry } from './library-registry.model';
 import { LibraryRegistryPopupService } from './library-registry-popup.service';
-import { Principal } from '../../shared';
+import { Principal, User } from '../../shared';
 import { RealmKeyGeneratorService } from './realm-key-generator.service';
 import { SourcesService } from '../sources';
 
@@ -18,6 +18,7 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
     libraryRegistry: LibraryRegistry;
     realmKey: string;
     downloadEnabled: boolean;
+    currentAccount: any;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -29,6 +30,11 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     ngOnInit() {
         this.downloadEnabled = false;
+        this.principal.identity().then((account: User) => {
+            if (account != null) {
+                this.currentAccount = account;
+            }
+        });
     }
 
     clear() {
