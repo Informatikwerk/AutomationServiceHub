@@ -1,9 +1,10 @@
 <div>
     <h2>
         <span jhiTranslate="automationServiceHubApp.guis.home.title">Guis</span>
-        <button class="btn btn-primary float-right jh-create-entity create-guis" [routerLink]="['/', { outlets: { popup: ['guis-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-guis"
+                [routerLink]="['/', { outlets: { popup: ['guis-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span  jhiTranslate="automationServiceHubApp.guis.home.createLabel">
+            <span jhiTranslate="automationServiceHubApp.guis.home.createLabel">
             Create new Guis
             </span>
         </button>
@@ -16,19 +17,15 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="automationServiceHubApp.guis.type">Type</span></th>
-            <th><span jhiTranslate="automationServiceHubApp.guis.jsFile">Js File</span></th>
-            <th><span jhiTranslate="automationServiceHubApp.guis.htmlFile">Html File</span></th>
-            <th></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="automationServiceHubApp.guis.type">Type</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let guis of guis ;trackBy: trackId">
                 <td><a [routerLink]="['../guis', guis.id ]">{{guis.id}}</a></td>
                 <td>{{guis.type}}</td>
-                <td>{{guis.jsFile}}</td>
-                <td>{{guis.htmlFile}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
