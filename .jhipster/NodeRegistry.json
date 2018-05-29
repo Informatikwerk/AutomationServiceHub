@@ -10,13 +10,6 @@
             ]
         },
         {
-            "fieldName": "node_id",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "reaml_key",
             "fieldType": "String",
             "fieldValidateRules": [

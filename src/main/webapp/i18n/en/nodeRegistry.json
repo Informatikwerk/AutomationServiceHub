@@ -17,7 +17,6 @@
                 "title": "Node Registry"
             },
             "ip": "Ip",
-            "node_id": "Node Id",
             "reaml_key": "Reaml Key",
             "type": "Type"
         }

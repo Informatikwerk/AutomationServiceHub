@@ -25,10 +25,6 @@ public class NodeRegistry implements Serializable {
     private String ip;
 
     @NotNull
-    @Column(name = "node_id", nullable = false)
-    private String node_id;
-
-    @NotNull
     @Column(name = "reaml_key", nullable = false)
     private String reaml_key;
 
@@ -56,19 +52,6 @@ public class NodeRegistry implements Serializable {
 
     public void setIp(String ip) {
         this.ip = ip;
-    }
-
-    public String getNode_id() {
-        return node_id;
-    }
-
-    public NodeRegistry node_id(String node_id) {
-        this.node_id = node_id;
-        return this;
-    }
-
-    public void setNode_id(String node_id) {
-        this.node_id = node_id;
     }
 
     public String getReaml_key() {
@@ -123,7 +106,6 @@ public class NodeRegistry implements Serializable {
         return "NodeRegistry{" +
             "id=" + getId() +
             ", ip='" + getIp() + "'" +
-            ", node_id='" + getNode_id() + "'" +
             ", reaml_key='" + getReaml_key() + "'" +
             ", type='" + getType() + "'" +
             "}";

@@ -1,0 +1,24 @@
+
+{
+    "automationServiceHubApp": {
+        "nodes" : {
+            "home": {
+                "title": "Nodes",
+                "createLabel": "Nodes erstellen",
+                "createOrEditLabel": "Nodes erstellen oder bearbeiten"
+            },
+            "created": "Nodes erstellt mit ID {{ param }}",
+            "updated": "Nodes aktualisiert mit ID {{ param }}",
+            "deleted": "Nodes gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Nodes {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Nodes"
+            },
+            "ip": "Ip",
+            "realmKey": "Realm Key",
+            "type": "Type"
+        }
+    }
+}

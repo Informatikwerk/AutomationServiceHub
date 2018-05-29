@@ -1,0 +1,46 @@
+
+<div *ngIf="nodesMeta">
+    <h2><span jhiTranslate="automationServiceHubApp.nodesMeta.detail.title">Nodes Meta</span> {{nodesMeta.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="automationServiceHubApp.nodesMeta.type">Type</span></dt>
+        <dd>
+            <span>{{nodesMeta.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodesMeta.description">Description</span></dt>
+        <dd>
+            <span>{{nodesMeta.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodesMeta.iconUrl">Icon Url</span></dt>
+        <dd>
+            <span>{{nodesMeta.iconUrl}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodesMeta.label">Label</span></dt>
+        <dd>
+            <span>{{nodesMeta.label}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodesMeta.actionElements">Action Elements</span></dt>
+        <dd>
+            <span>{{nodesMeta.actionElements}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.nodesMeta.valueElements">Value Elements</span></dt>
+        <dd>
+            <span>{{nodesMeta.valueElements}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'nodes-meta/'+ nodesMeta.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

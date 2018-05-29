@@ -18,7 +18,6 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.ip">Ip</span></th>
-            <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.node_id">Node Id</span></th>
             <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.reaml_key">Reaml Key</span></th>
             <th><span jhiTranslate="automationServiceHubApp.nodeRegistry.type">Type</span></th>
             <th></th>
@@ -28,7 +27,6 @@
             <tr *ngFor="let nodeRegistry of nodeRegistries ;trackBy: trackId">
                 <td><a [routerLink]="['../node-registry', nodeRegistry.id ]">{{nodeRegistry.id}}</a></td>
                 <td>{{nodeRegistry.ip}}</td>
-                <td>{{nodeRegistry.node_id}}</td>
                 <td>{{nodeRegistry.reaml_key}}</td>
                 <td>{{nodeRegistry.type}}</td>
                 <td class="text-right">

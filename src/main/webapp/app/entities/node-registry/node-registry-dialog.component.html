@@ -24,17 +24,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="automationServiceHubApp.nodeRegistry.node_id" for="field_node_id">Node Id</label>
-            <input type="text" class="form-control" name="node_id" id="field_node_id"
-                [(ngModel)]="nodeRegistry.node_id" required/>
-            <div [hidden]="!(editForm.controls.node_id?.dirty && editForm.controls.node_id?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.node_id?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="automationServiceHubApp.nodeRegistry.reaml_key" for="field_reaml_key">Reaml Key</label>
             <input type="text" class="form-control" name="reaml_key" id="field_reaml_key"
                 [(ngModel)]="nodeRegistry.reaml_key" required/>

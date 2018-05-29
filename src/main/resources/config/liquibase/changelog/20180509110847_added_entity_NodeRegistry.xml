@@ -26,10 +26,6 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="node_id" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
             <column name="reaml_key" type="varchar(255)">
                 <constraints nullable="false" />
             </column>

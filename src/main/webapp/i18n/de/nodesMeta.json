@@ -1,0 +1,27 @@
+
+{
+    "automationServiceHubApp": {
+        "nodesMeta" : {
+            "home": {
+                "title": "Nodes Metas",
+                "createLabel": "Nodes Meta erstellen",
+                "createOrEditLabel": "Nodes Meta erstellen oder bearbeiten"
+            },
+            "created": "Nodes Meta erstellt mit ID {{ param }}",
+            "updated": "Nodes Meta aktualisiert mit ID {{ param }}",
+            "deleted": "Nodes Meta gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Nodes Meta {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Nodes Meta"
+            },
+            "type": "Type",
+            "description": "Description",
+            "iconUrl": "Icon Url",
+            "label": "Label",
+            "actionElements": "Action Elements",
+            "valueElements": "Value Elements"
+        }
+    }
+}

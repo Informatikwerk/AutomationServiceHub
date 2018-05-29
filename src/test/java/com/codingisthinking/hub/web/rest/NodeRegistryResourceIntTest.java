@@ -41,9 +41,6 @@ public class NodeRegistryResourceIntTest {
     private static final String DEFAULT_IP = "AAAAAAAAAA";
     private static final String UPDATED_IP = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NODE_ID = "AAAAAAAAAA";
-    private static final String UPDATED_NODE_ID = "BBBBBBBBBB";
-
     private static final String DEFAULT_REAML_KEY = "AAAAAAAAAA";
     private static final String UPDATED_REAML_KEY = "BBBBBBBBBB";
 
@@ -89,7 +86,6 @@ public class NodeRegistryResourceIntTest {
     public static NodeRegistry createEntity(EntityManager em) {
         NodeRegistry nodeRegistry = new NodeRegistry()
             .ip(DEFAULT_IP)
-            .node_id(DEFAULT_NODE_ID)
             .reaml_key(DEFAULT_REAML_KEY)
             .type(DEFAULT_TYPE);
         return nodeRegistry;
@@ -116,7 +112,6 @@ public class NodeRegistryResourceIntTest {
         assertThat(nodeRegistryList).hasSize(databaseSizeBeforeCreate + 1);
         NodeRegistry testNodeRegistry = nodeRegistryList.get(nodeRegistryList.size() - 1);
         assertThat(testNodeRegistry.getIp()).isEqualTo(DEFAULT_IP);
-        assertThat(testNodeRegistry.getNode_id()).isEqualTo(DEFAULT_NODE_ID);
         assertThat(testNodeRegistry.getReaml_key()).isEqualTo(DEFAULT_REAML_KEY);
         assertThat(testNodeRegistry.getType()).isEqualTo(DEFAULT_TYPE);
     }
@@ -146,24 +141,6 @@ public class NodeRegistryResourceIntTest {
         int databaseSizeBeforeTest = nodeRegistryRepository.findAll().size();
         // set the field null
         nodeRegistry.setIp(null);
-
-        // Create the NodeRegistry, which fails.
-
-        restNodeRegistryMockMvc.perform(post("/api/node-registries")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(nodeRegistry)))
-            .andExpect(status().isBadRequest());
-
-        List<NodeRegistry> nodeRegistryList = nodeRegistryRepository.findAll();
-        assertThat(nodeRegistryList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkNode_idIsRequired() throws Exception {
-        int databaseSizeBeforeTest = nodeRegistryRepository.findAll().size();
-        // set the field null
-        nodeRegistry.setNode_id(null);
 
         // Create the NodeRegistry, which fails.
 
@@ -224,7 +201,6 @@ public class NodeRegistryResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(nodeRegistry.getId().intValue())))
             .andExpect(jsonPath("$.[*].ip").value(hasItem(DEFAULT_IP.toString())))
-            .andExpect(jsonPath("$.[*].node_id").value(hasItem(DEFAULT_NODE_ID.toString())))
             .andExpect(jsonPath("$.[*].reaml_key").value(hasItem(DEFAULT_REAML_KEY.toString())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
     }
@@ -241,7 +217,6 @@ public class NodeRegistryResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(nodeRegistry.getId().intValue()))
             .andExpect(jsonPath("$.ip").value(DEFAULT_IP.toString()))
-            .andExpect(jsonPath("$.node_id").value(DEFAULT_NODE_ID.toString()))
             .andExpect(jsonPath("$.reaml_key").value(DEFAULT_REAML_KEY.toString()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
     }
@@ -267,7 +242,6 @@ public class NodeRegistryResourceIntTest {
         em.detach(updatedNodeRegistry);
         updatedNodeRegistry
             .ip(UPDATED_IP)
-            .node_id(UPDATED_NODE_ID)
             .reaml_key(UPDATED_REAML_KEY)
             .type(UPDATED_TYPE);
 
@@ -281,7 +255,6 @@ public class NodeRegistryResourceIntTest {
         assertThat(nodeRegistryList).hasSize(databaseSizeBeforeUpdate);
         NodeRegistry testNodeRegistry = nodeRegistryList.get(nodeRegistryList.size() - 1);
         assertThat(testNodeRegistry.getIp()).isEqualTo(UPDATED_IP);
-        assertThat(testNodeRegistry.getNode_id()).isEqualTo(UPDATED_NODE_ID);
         assertThat(testNodeRegistry.getReaml_key()).isEqualTo(UPDATED_REAML_KEY);
         assertThat(testNodeRegistry.getType()).isEqualTo(UPDATED_TYPE);
     }
