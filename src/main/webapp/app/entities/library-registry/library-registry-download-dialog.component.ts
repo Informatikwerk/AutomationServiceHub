@@ -41,11 +41,6 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
         this.activeModal.dismiss('cancel');
     }
 
-    generateRealmKey() {
-        this.subscribeToResponse(
-            this.realmKeyGeneratorService.get());
-    }
-
     copyRealmKey() {
         console.log('Copied!');
         let selBox = document.createElement('textarea');
@@ -66,6 +61,11 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
             console.log('blob ', res);
             saveAs(res, this.libraryRegistry.name + '.zip');
         });
+    }
+
+    generateRealmKey() {
+        this.subscribeToResponse(
+            this.realmKeyGeneratorService.get());
     }
 
     private subscribeToResponse(result: Observable<string>) {
