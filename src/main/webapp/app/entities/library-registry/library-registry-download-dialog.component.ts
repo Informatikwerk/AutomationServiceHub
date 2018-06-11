@@ -65,7 +65,7 @@ export class LibraryRegistryDownloadDialogComponent implements OnInit {
 
     generateRealmKey() {
         this.subscribeToResponse(
-            this.realmKeyGeneratorService.get());
+            this.realmKeyGeneratorService.getRealmkey());
     }
 
     private subscribeToResponse(result: Observable<string>) {
