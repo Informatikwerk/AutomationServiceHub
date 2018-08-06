@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: INFO
-        com.codingisthinking.hub: INFO
+        de.informatikwerk.ash: INFO
         io.github.jhipster: INFO
 
 spring:

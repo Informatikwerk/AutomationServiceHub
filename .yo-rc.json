@@ -1,13 +1,13 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.codingisthinking.hub",
+      "packageName": "de.informatikwerk.ash",
       "nativeLanguage": "en"
     },
     "jhipsterVersion": "4.14.3",
     "baseName": "AutomationServiceHub",
-    "packageName": "com.codingisthinking.hub",
-    "packageFolder": "com/codingisthinking/hub",
+    "packageName": "de.informatikwerk.ash",
+    "packageFolder": "de/informatikwerk/ash",
     "serverPort": "7778",
     "authenticationType": "jwt",
     "cacheProvider": "ehcache",
