@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {REALM_KEY_SERVER_API_URL} from "../../app.constants";
 
 
 @Injectable()
 export class RealmKeyGeneratorService {
-
-    private resourceUrl = 'http://localhost:8083/api/realmkey';
 
     constructor(private http: HttpClient) {
     }
 
 
     getRealmkey() {
-        console.log("request");
-
-        return this.http.get(this.resourceUrl, {
+        return this.http.get(REALM_KEY_SERVER_API_URL, {
             responseType: 'text' as 'text'
         });
     }
