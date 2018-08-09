@@ -1,10 +1,8 @@
 package de.informatikwerk.ash.service.dto;
 
 import de.informatikwerk.ash.config.Constants;
-
 import de.informatikwerk.ash.domain.Authority;
 import de.informatikwerk.ash.domain.User;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 

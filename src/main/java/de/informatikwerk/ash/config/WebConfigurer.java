@@ -72,7 +72,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         // CloudFoundry issue, see https://github.com/cloudfoundry/gorouter/issues/64
         mappings.add("json", MediaType.TEXT_HTML_VALUE + ";charset=utf-8");
         container.setMimeMappings(mappings);
-        // When running in an IDE or with ./mvnw spring-boot:run, set location of the static web assets.
+        // When running in an IDE or with ./gradlew bootRun, set location of the static web assets.
         setLocationForStaticAssets(container);
 
         /*
@@ -93,11 +93,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
     private void setLocationForStaticAssets(ConfigurableEmbeddedServletContainer container) {
         File root;
         String prefixPath = resolvePathPrefix();
-        if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
-            root = new File(prefixPath + "target/www/");
-        } else {
-            root = new File(prefixPath + "src/main/webapp/");
-        }
+        root = new File(prefixPath + "build/www/");
         if (root.exists() && root.isDirectory()) {
             container.setDocumentRoot(root);
         }
@@ -110,7 +106,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         String fullExecutablePath = this.getClass().getResource("").getPath();
         String rootPath = Paths.get(".").toUri().normalize().getPath();
         String extractedPath = fullExecutablePath.replace(rootPath, "");
-        int extractionEndIndex = extractedPath.indexOf("target/");
+        int extractionEndIndex = extractedPath.indexOf("build/");
         if (extractionEndIndex <= 0) {
             return "";
         }

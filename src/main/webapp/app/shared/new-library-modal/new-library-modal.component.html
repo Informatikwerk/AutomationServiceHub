@@ -1,0 +1,68 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Upload new library</h4>
+            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <form>
+                    <div class="row m-3">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="desc">Description</label>
+                                <input type="text" class="form-control" id="desc" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-3">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="platform">Platform</label>
+                                <input type="text" class="form-control" id="platform" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="version">Version</label>
+                                <input type="text" class="form-control" id="version" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-3">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" class="form-control" id="author" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="homepage">Homepage saaa</label>
+                                <input type="text" class="form-control" id="homepage" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-3 d-flex justify-content-center">
+                        <input type="file" multiple (change)="onFileChange($event)"/>
+                    </div>
+                    <div class="row d-flex float-right">
+                        <button type="submit" [disabled]="formInvalid" class="btn btn-success"
+                                (click)="saveEvent()">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 package de.informatikwerk.ash.service;
 
-import de.informatikwerk.ash.domain.User;
 
+import de.informatikwerk.ash.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 
 import org.apache.commons.lang3.CharEncoding;

@@ -19,6 +19,8 @@ spring:
         name: AutomationServiceHub
     jackson:
         serialization.write_dates_as_timestamps: false
+    cache:
+        type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:h2:mem:AutomationServiceHub;DB_CLOSE_DELAY=-1
@@ -82,11 +84,11 @@ jhipster:
             queue-size: 512
     mail:
         from: test@localhost
-        base-url: http://127.0.0.1:8080
+        base-url: http://127.0.0.1:7778
     security:
         authentication:
             jwt:
-                secret: b488b7650693c274b8b1578e39dab5096d48c916
+                secret: 2f4375c46058b79b5768f31d2521b98a06ce7265
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

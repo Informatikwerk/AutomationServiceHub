@@ -1,0 +1,27 @@
+
+{
+    "automationServiceHubApp": {
+        "nodeMetaRegistry" : {
+            "home": {
+                "title": "Node Meta Registries",
+                "createLabel": "Create a new Node Meta Registry",
+                "createOrEditLabel": "Create or edit a Node Meta Registry"
+            },
+            "created": "A new Node Meta Registry is created with identifier {{ param }}",
+            "updated": "A Node Meta Registry is updated with identifier {{ param }}",
+            "deleted": "A Node Meta Registry is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Node Meta Registry {{ id }}?"
+            },
+            "detail": {
+                "title": "Node Meta Registry"
+            },
+            "type": "Type",
+            "description": "Description",
+            "icon_url": "Icon Url",
+            "label": "Label",
+            "action_elements": "Action Elements",
+            "value_elements": "Value Elements"
+        }
+    }
+}

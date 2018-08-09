@@ -1,9 +1,5 @@
 package de.informatikwerk.ash.security;
 
-import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.domain.User;
-import de.informatikwerk.ash.repository.UserRepository;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;

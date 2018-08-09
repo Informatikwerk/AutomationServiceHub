@@ -1,0 +1,24 @@
+
+{
+    "automationServiceHubApp": {
+        "sources" : {
+            "home": {
+                "title": "Sources",
+                "createLabel": "Sources erstellen",
+                "createOrEditLabel": "Sources erstellen oder bearbeiten"
+            },
+            "created": "Sources erstellt mit ID {{ param }}",
+            "updated": "Sources aktualisiert mit ID {{ param }}",
+            "deleted": "Sources gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Sources {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Sources"
+            },
+            "sourceCode": "Source Code",
+            "fileName": "File Name",
+            "libraryRegistry": "Library Registry"
+        }
+    }
+}

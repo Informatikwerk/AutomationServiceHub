@@ -1,6 +1,7 @@
 package de.informatikwerk.ash.web.rest.vm;
 
 import de.informatikwerk.ash.service.dto.UserDTO;
+
 import javax.validation.constraints.Size;
 
 /**

@@ -3,7 +3,6 @@ package de.informatikwerk.ash.service.mapper;
 import de.informatikwerk.ash.domain.Authority;
 import de.informatikwerk.ash.domain.User;
 import de.informatikwerk.ash.service.dto.UserDTO;
-
 import org.springframework.stereotype.Service;
 
 import java.util.*;

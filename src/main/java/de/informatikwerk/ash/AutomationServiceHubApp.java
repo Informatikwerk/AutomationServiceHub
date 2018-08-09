@@ -2,7 +2,6 @@ package de.informatikwerk.ash;
 
 import de.informatikwerk.ash.config.ApplicationProperties;
 import de.informatikwerk.ash.config.DefaultProfileUtil;
-
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.slf4j.Logger;

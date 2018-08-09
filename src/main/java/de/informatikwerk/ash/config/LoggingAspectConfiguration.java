@@ -1,7 +1,6 @@
 package de.informatikwerk.ash.config;
 
 import de.informatikwerk.ash.aop.logging.LoggingAspect;
-
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.springframework.context.annotation.*;

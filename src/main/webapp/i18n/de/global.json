@@ -4,12 +4,18 @@
         "browsehappy": "Sie benutzen einen <strong>veralteten</strong> Browser. Bitte <a href=\"http://browsehappy.com/?locale=de/\">aktualisieren Sie Ihren Browser</a>, um die Benutzerfreundlichkeit zu erhöhen.",
         "menu": {
             "home": "Startseite",
+            "library-library": "Library",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entitäten",
+                "guiRegister": "Gui Register",
                 "nodeRegistry": "Node Registry",
-                "gui": "Gui",
-                "nodeMetaRegister": "Node Meta Register",
+                "nodeMetaRegistry": "Node Meta Registry",
+                "libraryRegistry": "Library Registry",
+                "sources": "Sources",
+                "nodes": "Nodes",
+                "guis": "Guis",
+                "nodesMeta": "Nodes Meta",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -48,8 +54,15 @@
         },
         "messages": {
             "info": {
-                "authenticated": "Wenn Sie sich <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">anmelden</a> möchten, versuchen Sie es mit <br/>- Administrator (Name=\"admin\" und Passwort=\"admin\")<br/>- Benutzer (Name=\"user\" und Passwort=\"user\").",
-                "register": "Sie haben noch keinen Zugang? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Registrieren Sie sich</a>"
+                "authenticated": {
+                    "prefix": "Wenn Sie sich ",
+                    "link": "anmelden",
+                    "suffix": " möchten, versuchen Sie es mit <br/>- Administrator (Name=\"admin\" und Passwort=\"admin\")<br/>- Benutzer (Name=\"user\" und Passwort=\"user\")."
+                },
+                "register": {
+                    "noaccount": "Sie haben noch keinen Zugang?",
+                    "link": "Registrieren Sie sich"
+                }
             },
             "error": {
                 "dontmatch": "Das bestätigte Passwort entspricht nicht dem neuen Passwort!"

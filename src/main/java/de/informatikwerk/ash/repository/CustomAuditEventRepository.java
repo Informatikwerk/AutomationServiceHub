@@ -3,7 +3,6 @@ package de.informatikwerk.ash.repository;
 import de.informatikwerk.ash.config.Constants;
 import de.informatikwerk.ash.config.audit.AuditEventConverter;
 import de.informatikwerk.ash.domain.PersistentAuditEvent;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.audit.AuditEvent;

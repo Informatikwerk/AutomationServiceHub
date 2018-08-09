@@ -11,7 +11,6 @@ import de.informatikwerk.ash.service.dto.UserDTO;
 import de.informatikwerk.ash.web.rest.errors.*;
 import de.informatikwerk.ash.web.rest.vm.KeyAndPasswordVM;
 import de.informatikwerk.ash.web.rest.vm.ManagedUserVM;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

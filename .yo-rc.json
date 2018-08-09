@@ -4,27 +4,27 @@
       "packageName": "de.informatikwerk.ash",
       "nativeLanguage": "en"
     },
-    "jhipsterVersion": "4.13.1",
+    "jhipsterVersion": "4.14.3",
     "baseName": "AutomationServiceHub",
     "packageName": "de.informatikwerk.ash",
     "packageFolder": "de/informatikwerk/ash",
-    "serverPort": "8080",
+    "serverPort": "7778",
     "authenticationType": "jwt",
-    "hibernateCache": "no",
-    "clusteredHttpSession": false,
-    "websocket": "spring-websocket",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "mysql",
     "prodDatabaseType": "mysql",
     "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
-    "buildTool": "maven",
+    "buildTool": "gradle",
     "enableSocialSignIn": false,
-    "enableSwaggerCodegen": true,
-    "jwtSecretKey": "b488b7650693c274b8b1578e39dab5096d48c916",
-    "clientFramework": "angular1",
-    "useSass": false,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "2f4375c46058b79b5768f31d2521b98a06ce7265",
+    "clientFramework": "angularX",
+    "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",
     "testFrameworks": [],
@@ -34,8 +34,12 @@
     "languages": [
       "en",
       "de"
-    ],
-    "cacheProvider": "no",
-    "enableHibernateCache": false
+    ]
+  },
+  "generator-jhipster-pages": {
+    "promptValues": {
+      "pageSet": "_CreateNew_",
+      "pageType": "loadAndSaveToServer"
+    }
   }
 }

@@ -1,10 +1,6 @@
 package de.informatikwerk.ash.web.rest;
 
 import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.config.audit.AuditEventConverter;
-import de.informatikwerk.ash.domain.PersistentAuditEvent;
-import de.informatikwerk.ash.repository.PersistenceAuditEventRepository;
-import de.informatikwerk.ash.service.AuditEventService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

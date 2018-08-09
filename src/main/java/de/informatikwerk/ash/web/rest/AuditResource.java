@@ -1,8 +1,8 @@
 package de.informatikwerk.ash.web.rest;
 
+
 import de.informatikwerk.ash.service.AuditEventService;
 import de.informatikwerk.ash.web.rest.util.PaginationUtil;
-
 import io.github.jhipster.web.util.ResponseUtil;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;

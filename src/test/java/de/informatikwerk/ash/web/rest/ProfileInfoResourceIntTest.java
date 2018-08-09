@@ -1,7 +1,7 @@
 package de.informatikwerk.ash.web.rest;
 
-import io.github.jhipster.config.JHipsterProperties;
 import de.informatikwerk.ash.AutomationServiceHubApp;
+import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

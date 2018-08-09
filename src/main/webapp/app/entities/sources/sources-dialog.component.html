@@ -1,0 +1,54 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySourcesLabel" jhiTranslate="automationServiceHubApp.sources.home.createOrEditLabel">Create or edit a Sources</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!sources.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="sources.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="automationServiceHubApp.sources.sourceCode" for="field_sourceCode">Source Code</label>
+            <textarea class="form-control" name="sourceCode" id="field_sourceCode"
+                [(ngModel)]="sources.sourceCode" required></textarea>
+            <div [hidden]="!(editForm.controls.sourceCode?.dirty && editForm.controls.sourceCode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.sourceCode?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="automationServiceHubApp.sources.fileName" for="field_fileName">File Name</label>
+            <input type="text" class="form-control" name="fileName" id="field_fileName"
+                [(ngModel)]="sources.fileName" required/>
+            <div [hidden]="!(editForm.controls.fileName?.dirty && editForm.controls.fileName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fileName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="automationServiceHubApp.sources.libraryRegistry" for="field_libraryRegistry">Library Registry</label>
+            <select class="form-control" id="field_libraryRegistry" name="libraryRegistry" [(ngModel)]="sources.libraryRegistry" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="libraryRegistryOption.id === sources.libraryRegistry?.id ? sources.libraryRegistry : libraryRegistryOption" *ngFor="let libraryRegistryOption of libraryregistries; trackBy: trackLibraryRegistryById">{{libraryRegistryOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

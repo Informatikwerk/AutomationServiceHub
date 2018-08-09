@@ -1,0 +1,27 @@
+
+{
+    "automationServiceHubApp": {
+        "libraryRegistry" : {
+            "home": {
+                "title": "Library Registries",
+                "createLabel": "Library Registry erstellen",
+                "createOrEditLabel": "Library Registry erstellen oder bearbeiten"
+            },
+            "created": "Library Registry erstellt mit ID {{ param }}",
+            "updated": "Library Registry aktualisiert mit ID {{ param }}",
+            "deleted": "Library Registry gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Library Registry {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Library Registry"
+            },
+            "name": "Name",
+            "author": "Author",
+            "description": "Description",
+            "platform": "Platform",
+            "version": "Version",
+            "url": "Url"
+        }
+    }
+}

@@ -1,7 +1,6 @@
 package de.informatikwerk.ash.security;
 
 import de.informatikwerk.ash.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

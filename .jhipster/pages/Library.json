@@ -1,0 +1,12 @@
+{
+    "pages": [
+        {
+            "pageName": "Library",
+            "pageType": "loadAndSaveToServer",
+            "pageGlyphIcon": "shopping-cart",
+            "fields": []
+        }
+    ],
+    "pageSetGlyphIcon": "shopping-cart",
+    "changelogDate": "20180509122923"
+}

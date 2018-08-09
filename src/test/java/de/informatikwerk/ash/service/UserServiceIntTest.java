@@ -1,12 +1,5 @@
 package de.informatikwerk.ash.service;
 
-import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.config.Constants;
-import de.informatikwerk.ash.domain.User;
-import de.informatikwerk.ash.repository.UserRepository;
-import de.informatikwerk.ash.service.dto.UserDTO;
-import de.informatikwerk.ash.service.util.RandomUtil;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;

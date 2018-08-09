@@ -1,11 +1,6 @@
 package de.informatikwerk.ash.web.rest;
 
 import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.domain.User;
-import de.informatikwerk.ash.repository.UserRepository;
-import de.informatikwerk.ash.security.jwt.TokenProvider;
-import de.informatikwerk.ash.web.rest.vm.LoginVM;
-import de.informatikwerk.ash.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,0 +1,24 @@
+
+{
+    "automationServiceHubApp": {
+        "guiRegister" : {
+            "home": {
+                "title": "Gui Registers",
+                "createLabel": "Gui Register erstellen",
+                "createOrEditLabel": "Gui Register erstellen oder bearbeiten"
+            },
+            "created": "Gui Register erstellt mit ID {{ param }}",
+            "updated": "Gui Register aktualisiert mit ID {{ param }}",
+            "deleted": "Gui Register gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Gui Register {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Gui Register"
+            },
+            "type": "Type",
+            "js_file": "Js File",
+            "html_file": "Html File"
+        }
+    }
+}

@@ -1,6 +1,5 @@
 package de.informatikwerk.ash.security.jwt;
 
-import de.informatikwerk.ash.security.AuthoritiesConstants;
 import io.github.jhipster.config.JHipsterProperties;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

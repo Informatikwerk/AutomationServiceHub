@@ -1,7 +1,7 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import de.informatikwerk.ash.config.Constants;
 import de.informatikwerk.ash.domain.User;
 import de.informatikwerk.ash.repository.UserRepository;
 import de.informatikwerk.ash.security.AuthoritiesConstants;

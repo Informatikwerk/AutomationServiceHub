@@ -1,0 +1,51 @@
+<div *ngIf="libraryRegistry">
+    <h2><span jhiTranslate="automationServiceHubApp.libraryRegistry.detail.title">Library Registry</span>
+        {{libraryRegistry.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="automationServiceHubApp.libraryRegistry.name">Name</span></dt>
+        <dd>
+            <span>{{libraryRegistry.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.libraryRegistry.author">Author</span></dt>
+        <dd>
+            <span>{{libraryRegistry.author}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.libraryRegistry.description">Description</span></dt>
+        <dd>
+            <span>{{libraryRegistry.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.libraryRegistry.platform">Platform</span></dt>
+        <dd>
+            <span>{{libraryRegistry.platform}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.libraryRegistry.version">Version</span></dt>
+        <dd>
+            <span>{{libraryRegistry.version}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.libraryRegistry.url">Url</span></dt>
+        <dd>
+            <span>{{libraryRegistry.url}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.sources.sourceCode">Source code</span></dt>
+        <dd *ngFor="let source of sources">
+            <span>{{source.fileName}}</span>
+        </dd>
+    </dl>
+
+    <button type=" submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            *ngIf="admin || currentAccount?.id === libraryRegistry.userId"
+            [routerLink]="['/', { outlets: { popup: 'library-registry/'+ libraryRegistry.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

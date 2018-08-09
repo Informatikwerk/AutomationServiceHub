@@ -1,12 +1,11 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.security.jwt.JWTConfigurer;
-import de.informatikwerk.ash.security.jwt.TokenProvider;
-import de.informatikwerk.ash.web.rest.vm.LoginVM;
-
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import de.informatikwerk.ash.security.jwt.JWTConfigurer;
+import de.informatikwerk.ash.security.jwt.TokenProvider;
+import de.informatikwerk.ash.web.rest.vm.LoginVM;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;

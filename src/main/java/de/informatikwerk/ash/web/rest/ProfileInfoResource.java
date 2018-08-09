@@ -1,7 +1,6 @@
 package de.informatikwerk.ash.web.rest;
 
 import de.informatikwerk.ash.config.DefaultProfileUtil;
-
 import io.github.jhipster.config.JHipsterProperties;
 
 import org.springframework.core.env.Environment;

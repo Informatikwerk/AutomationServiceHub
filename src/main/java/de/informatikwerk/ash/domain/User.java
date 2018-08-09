@@ -1,8 +1,8 @@
 package de.informatikwerk.ash.domain;
 
-import de.informatikwerk.ash.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.informatikwerk.ash.config.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.validator.constraints.Email;

@@ -1,0 +1,36 @@
+
+<div *ngIf="sources">
+    <h2><span jhiTranslate="automationServiceHubApp.sources.detail.title">Sources</span> {{sources.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="automationServiceHubApp.sources.sourceCode">Source Code</span></dt>
+        <dd>
+            <span>{{sources.sourceCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.sources.fileName">File Name</span></dt>
+        <dd>
+            <span>{{sources.fileName}}</span>
+        </dd>
+        <dt><span jhiTranslate="automationServiceHubApp.sources.libraryRegistry">Library Registry</span></dt>
+        <dd>
+            <div *ngIf="sources.libraryRegistry">
+                <a [routerLink]="['/library-registry', sources.libraryRegistry?.id]">{{sources.libraryRegistry?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sources/'+ sources.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

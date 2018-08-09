@@ -1,7 +1,6 @@
 package de.informatikwerk.ash.repository;
 
 import de.informatikwerk.ash.domain.Authority;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

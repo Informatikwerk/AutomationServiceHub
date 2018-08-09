@@ -1,17 +1,6 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.config.Constants;
 import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.domain.Authority;
-import de.informatikwerk.ash.domain.User;
-import de.informatikwerk.ash.repository.AuthorityRepository;
-import de.informatikwerk.ash.repository.UserRepository;
-import de.informatikwerk.ash.security.AuthoritiesConstants;
-import de.informatikwerk.ash.service.MailService;
-import de.informatikwerk.ash.service.dto.UserDTO;
-import de.informatikwerk.ash.web.rest.errors.ExceptionTranslator;
-import de.informatikwerk.ash.web.rest.vm.KeyAndPasswordVM;
-import de.informatikwerk.ash.web.rest.vm.ManagedUserVM;
 import de.informatikwerk.ash.service.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
 
