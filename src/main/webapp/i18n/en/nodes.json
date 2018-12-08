@@ -18,7 +18,9 @@
             },
             "ip": "Ip",
             "realmKey": "Realm Key",
-            "type": "Type"
+            "type": "Type",
+            "nodeName": "Node Name",
+            "nodeId": "Node Id"
         }
     }
 }

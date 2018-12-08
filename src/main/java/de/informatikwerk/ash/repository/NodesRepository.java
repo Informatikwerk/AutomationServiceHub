@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface NodesRepository extends JpaRepository<Nodes, Long> {
-
+	Nodes findByNodeId(String nodeId);
 }

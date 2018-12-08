@@ -22,6 +22,14 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "nodeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nodeId",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180529103907",

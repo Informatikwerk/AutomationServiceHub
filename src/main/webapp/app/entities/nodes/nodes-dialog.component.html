@@ -45,6 +45,16 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="automationServiceHubApp.nodes.nodeName" for="field_nodeName">Node Name</label>
+            <input type="text" class="form-control" name="nodeName" id="field_nodeName"
+                [(ngModel)]="nodes.nodeName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="automationServiceHubApp.nodes.nodeId" for="field_nodeId">Node Id</label>
+            <input type="text" class="form-control" name="nodeId" id="field_nodeId"
+                [(ngModel)]="nodes.nodeId" />
+        </div>
 
     </div>
     <div class="modal-footer">
