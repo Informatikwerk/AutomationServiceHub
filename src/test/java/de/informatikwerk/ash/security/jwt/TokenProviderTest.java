@@ -12,6 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import de.informatikwerk.ash.security.AuthoritiesConstants;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;

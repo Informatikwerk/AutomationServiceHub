@@ -1,7 +1,19 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.domain.Sources;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,15 +27,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import de.informatikwerk.ash.AutomationServiceHubApp;
+import de.informatikwerk.ash.domain.Sources;
+import de.informatikwerk.ash.repository.SourcesRepository;
+import de.informatikwerk.ash.service.DownloadService;
+import de.informatikwerk.ash.web.rest.errors.ExceptionTranslator;
 
 /**
  * Test class for the SourcesResource REST controller.
@@ -44,6 +53,9 @@ public class SourcesResourceIntTest {
     private SourcesRepository sourcesRepository;
 
     @Autowired
+    private DownloadService downloadService;
+    
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -62,7 +74,7 @@ public class SourcesResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SourcesResource sourcesResource = new SourcesResource(sourcesRepository);
+        final SourcesResource sourcesResource = new SourcesResource(sourcesRepository, downloadService);
         this.restSourcesMockMvc = MockMvcBuilders.standaloneSetup(sourcesResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

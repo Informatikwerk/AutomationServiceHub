@@ -1,6 +1,13 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.AutomationServiceHubApp;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,13 +20,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.not;
+import de.informatikwerk.ash.AutomationServiceHubApp;
+import de.informatikwerk.ash.domain.User;
+import de.informatikwerk.ash.repository.UserRepository;
+import de.informatikwerk.ash.security.jwt.TokenProvider;
+import de.informatikwerk.ash.web.rest.errors.ExceptionTranslator;
+import de.informatikwerk.ash.web.rest.vm.LoginVM;
 
 /**
  * Test class for the UserJWTController REST controller.

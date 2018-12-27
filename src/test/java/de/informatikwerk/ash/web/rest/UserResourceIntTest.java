@@ -1,7 +1,24 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.service.UserService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.Instant;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,15 +35,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import de.informatikwerk.ash.AutomationServiceHubApp;
+import de.informatikwerk.ash.domain.Authority;
+import de.informatikwerk.ash.domain.User;
+import de.informatikwerk.ash.repository.UserRepository;
+import de.informatikwerk.ash.security.AuthoritiesConstants;
+import de.informatikwerk.ash.service.MailService;
+import de.informatikwerk.ash.service.UserService;
+import de.informatikwerk.ash.service.dto.UserDTO;
+import de.informatikwerk.ash.service.mapper.UserMapper;
+import de.informatikwerk.ash.web.rest.errors.ExceptionTranslator;
+import de.informatikwerk.ash.web.rest.vm.ManagedUserVM;
 
 /**
  * Test class for the UserResource REST controller.

@@ -1,6 +1,14 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.AutomationServiceHubApp;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.Instant;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +24,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import de.informatikwerk.ash.AutomationServiceHubApp;
+import de.informatikwerk.ash.config.audit.AuditEventConverter;
+import de.informatikwerk.ash.domain.PersistentAuditEvent;
+import de.informatikwerk.ash.repository.PersistenceAuditEventRepository;
+import de.informatikwerk.ash.service.AuditEventService;
 
 /**
  * Test class for the AuditResource REST controller.

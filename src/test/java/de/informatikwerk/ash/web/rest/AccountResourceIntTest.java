@@ -1,9 +1,22 @@
 package de.informatikwerk.ash.web.rest;
 
-import de.informatikwerk.ash.AutomationServiceHubApp;
-import de.informatikwerk.ash.service.UserService;
-import org.apache.commons.lang3.RandomStringUtils;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.Instant;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,18 +32,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.Instant;
-import java.time.LocalDate;
 
-import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import de.informatikwerk.ash.AutomationServiceHubApp;
+import de.informatikwerk.ash.config.Constants;
+import de.informatikwerk.ash.domain.Authority;
+import de.informatikwerk.ash.domain.User;
+import de.informatikwerk.ash.repository.AuthorityRepository;
+import de.informatikwerk.ash.repository.UserRepository;
+import de.informatikwerk.ash.security.AuthoritiesConstants;
+import de.informatikwerk.ash.service.MailService;
+import de.informatikwerk.ash.service.UserService;
+import de.informatikwerk.ash.service.dto.UserDTO;
+import de.informatikwerk.ash.web.rest.errors.ExceptionTranslator;
+import de.informatikwerk.ash.web.rest.vm.KeyAndPasswordVM;
+import de.informatikwerk.ash.web.rest.vm.ManagedUserVM;
 
 /**
  * Test class for the AccountResource REST controller.

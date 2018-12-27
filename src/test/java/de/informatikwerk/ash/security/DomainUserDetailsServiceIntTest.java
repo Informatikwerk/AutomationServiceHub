@@ -1,5 +1,9 @@
 package de.informatikwerk.ash.security;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Locale;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,9 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Locale;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import de.informatikwerk.ash.AutomationServiceHubApp;
+import de.informatikwerk.ash.domain.User;
+import de.informatikwerk.ash.repository.UserRepository;
 
 /**
  * Test class for DomainUserDetailsService.
