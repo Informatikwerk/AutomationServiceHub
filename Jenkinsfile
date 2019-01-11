@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               dir ('D:/projekte/AutomationFarm/automationservicehub') { 
-               bat 'gradlew clean build -x test war'
+               dir ('/home/eugen/automation/automationservicehub') { 
+               sh 'gradlew clean build -x test war'
            }
         }
     }
