@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'node:7-alpine' }
+        docker { image 'openjdk:8-jre-alpine' }
     }
     stages {
         stage('Test') {
