@@ -1,13 +1,12 @@
 pipeline {
-    agent any
-
+    agent {
+        docker { image 'node:7-alpine' }
+    }
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-               dir ('/home/eugen/automation/automationservicehub') { 
-               sh './gradlew clean build -x test war'
-           }
+                sh './gradlew clean build -x test war'
+            }
         }
     }
-}
 }
