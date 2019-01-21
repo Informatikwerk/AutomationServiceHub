@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh './gradlew clean build -x test war'
+                sh './gradlew clean build -x test war --stacktrace'
             }
         }
     }
