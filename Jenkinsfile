@@ -1,7 +1,7 @@
 pipeline {
     agent {
         dockerfile {
-			args '-v ${PWD}:/usr/src/app -w /usr/src/app'	
+			args '-v /opt/tomcat/.jenkins/workspace/ash_git:/usr/src/app -w /usr/src/app'	
 		}			
     }
 	environment {
