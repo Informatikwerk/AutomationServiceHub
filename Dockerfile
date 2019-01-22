@@ -14,6 +14,7 @@ RUN apt-get update
 RUN apt-get install -y wget gnupg
 RUN apt-get install -y build-essential
 RUN apt-get install -y nodejs
+RUN apt-get install -y npm
 RUN npm install -g npm@5.7.1
 RUN /usr/bin/npm install -g gulp
 RUN node -v
