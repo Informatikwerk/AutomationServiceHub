@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+				sh 'pwd'
                 sh './gradlew clean build -x test war'
             }
         }
