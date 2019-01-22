@@ -4,7 +4,7 @@ pipeline {
     }
 	environment {
         HOME = '.'
-    }e
+    }
     stages {
         stage('Test') {
             steps {
