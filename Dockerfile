@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
 
+WORKDIR /opt
+
 RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y  software-properties-common && \
@@ -9,7 +11,7 @@ RUN apt-get update && \
 	apt-get install -y oracle-java8-installer && \
 	apt-get clean
 RUN apt-get update
-RUN curl -sL https://deb.nodesource.com/setup_8.x
+RUN apt-get install -y wget gnupg
 RUN apt-get install -y build-essential
 RUN apt-get install -y nodejs
 RUN npm install -g npm@5.7.1
