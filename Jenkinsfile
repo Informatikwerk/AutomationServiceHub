@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        dockerfile true 
+        dockerfile {
+			args '-v ${PWD}:/usr/src/app -w /usr/src/app'	
+		}			
     }
 	environment {
         HOME = '.'
