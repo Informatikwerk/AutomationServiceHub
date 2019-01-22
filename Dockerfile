@@ -8,4 +8,3 @@ RUN apk add npm
 RUN node -v
 
 EXPOSE 8000
-CMD ["npm", "start"]
