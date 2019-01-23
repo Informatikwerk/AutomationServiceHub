@@ -20,5 +20,3 @@ RUN /usr/bin/npm install -g gulp
 RUN node -v
 
 COPy . .
-
-CMD ["/bin/bash"]
