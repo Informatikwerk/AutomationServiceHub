@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-		sh 'sudo who'
+		sh 'ls -turla'
 		sh 'echo $USER'
 		sh 'pwd'
 		sh 'cd /opt/'
