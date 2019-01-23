@@ -11,11 +11,12 @@ pipeline {
         stage('Test') {
             steps {
 		sh 'ls -turla'
-		sh 'echo $USER'
 		sh 'pwd'
 		sh 'cd /opt/'
 		sh 'pwd'
-		sh './gradlew clean build -x test war'		
+		sh './gradlew clean build -x test war'
+		sh 'cd /build/libs'
+		sh 'ls -turla'		
             }
         }
     }
