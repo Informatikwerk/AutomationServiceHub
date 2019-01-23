@@ -11,6 +11,8 @@ pipeline {
         stage('Test') {
             steps {
 		sh 'pwd'
+		sh 'cd /opt/'
+		sh 'pwd'
 		sh './gradlew clean build -x test war'		
             }
         }
