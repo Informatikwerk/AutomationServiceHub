@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+		sh 'echo $USER'
 		sh 'pwd'
 		sh 'cd /opt/'
 		sh 'pwd'
