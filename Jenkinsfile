@@ -1,7 +1,7 @@
 pipeline {
     agent {
         dockerfile {
-			args '-v /opt/tomcat/.jenkins/workspace/ash_git:/opt -w /opt'	
+			args '-v /opt/tomcat/.jenkins/workspace/automationservicehub:/opt -w /opt'	
 		}			
     }
 	environment {
@@ -10,13 +10,8 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-		sh 'ls -turla'
 		sh 'pwd'
-		sh 'cd /opt/'
-		sh 'pwd'
-		sh './gradlew clean build -x test war'
-		sh 'cd /build/libs'
-		sh 'ls -turla'		
+		sh './gradlew clean build -x test war'		
             }
         }
     }
