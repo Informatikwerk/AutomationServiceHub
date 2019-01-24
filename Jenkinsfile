@@ -14,5 +14,12 @@ pipeline {
 		sh './gradlew clean build -x test war'		
             }
         }
+	stage('Build') {
+	    steps {
+		sh 'SSC_HOME=$PWD'
+		sh 'installOnlyDocker.sh'
+	    }		
+        }
     }
+	
 }
