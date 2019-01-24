@@ -17,7 +17,12 @@ pipeline {
 	stage('Build') {
 	    steps {
 		sh 'SSC_HOME=$PWD'
-		sh 'installOnlyDocker.sh'
+		sh 'echo build image...'
+		sh 'docker build -t eugen/ssc-app $PWD/.'
+		sh 'echo Delete old container...'
+		sh 'docker rm -f ssc-app'
+		sh 'echo Run new container...'
+		sh 'docker run -p 8092:8000 -d --name ssc-app eugen/ssc-ap'
 	    }		
         }
     }
