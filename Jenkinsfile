@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-        stage('Test') {
+        stage('Build') {
             agent {
                 dockerfile {
                         args '-v /opt/tomcat/.jenkins/workspace/automationservicehub:/opt -w /opt'
@@ -15,7 +15,7 @@ pipeline {
                 sh './gradlew clean build -x test war'
             }
         }
-        stage('Build') {
+        stage('Deploy') {
             agent any
             steps {
                 sh 'ASH_HOME=$PWD'
