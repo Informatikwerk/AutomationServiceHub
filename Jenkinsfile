@@ -1,30 +1,30 @@
 pipeline {
-    agent {
-        dockerfile {
-			args '-v /opt/tomcat/.jenkins/workspace/automationservicehub:/opt -w /opt'	
-		}			
-    }
-	environment {
-        HOME = '.'
-    }
+    agent none
     stages {
         stage('Test') {
+            agent {
+                dockerfile {
+                        args '-v /opt/tomcat/.jenkins/workspace/automationservicehub:/opt -w /opt'
+                }
+            }
+             environment {
+                HOME = '.'
+            }
             steps {
-		sh 'pwd'
-		sh './gradlew clean build -x test war'		
+                sh 'pwd'
+                sh './gradlew clean build -x test war'
             }
         }
-	stage('Build') {
-	    steps {
-		sh 'SSC_HOME=$PWD'
-		sh 'echo build image...'
-		sh 'docker build -t eugen/ssc-app $PWD/.'
-		sh 'echo Delete old container...'
-		sh 'docker rm -f ssc-app'
-		sh 'echo Run new container...'
-		sh 'docker run -p 8092:8000 -d --name ssc-app eugen/ssc-ap'
-	    }		
+        stage('Build') {
+            agent any
+            steps {
+                sh 'ASH_HOME=$PWD'
+                sh 'echo Calling ------------- $ASH_HOME/gradlew bootRepackage -Pprod buildDocker'
+                sh './gradlew bootRepackage -Pprod buildDocker --stacktrace'
+                sh 'echo Calling ------------- $ASH_HOME/docker-compose -f src/main/docker/app.yml up -d'
+                sh 'docker-compose -f src/main/docker/app.yml up -d'
+            }
         }
     }
-	
+
 }
