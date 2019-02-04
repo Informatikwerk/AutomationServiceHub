@@ -22,8 +22,10 @@ pipeline {
 		sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml eugen@192.168.175.44:/home/eugen/automation/automationservicehub/app.yml'
 		sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml eugen@192.168.175.44:/home/eugen/automation/automationservicehub/mysql.yml'
 		sh 'ssh -R 5000:localhost:5000 -l eugen 192.168.175.44'
+		sh 'pwd'
 		sh 'docker pull localhost:5000/automationservicehub'
-		sh 'docker-compose -f /automation/automationservicehub/app.yml up -d'
+		sh 'cd automation/automationservicehub'
+		sh 'docker-compose -f app.yml up -d'
 	    }
 	}
     }
