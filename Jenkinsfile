@@ -26,7 +26,7 @@ pipeline {
             }
         }
 	stage('Remote Build') {
-	    agent { sshagent (b857f680-137f-4664-8478-c76098a49af7) }
+	    agent any
 	    steps {
 		sshagent ([b857f680-137f-4664-8478-c76098a49af7])
 		sh 'docker image tag automationservicehub localhost:5000/automationservicehub'
