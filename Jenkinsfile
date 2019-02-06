@@ -28,6 +28,7 @@ pipeline {
 	stage('Remote Build') {
 	    agent any
 	    steps {
+		sshagent (b857f680-137f-4664-8478-c76098a49af7)
 		sh 'docker image tag automationservicehub localhost:5000/automationservicehub'
 		sh 'docker push localhost:5000/automationservicehub'
 		sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml eugen@192.168.175.46:/home/eugen/automation/automationservicehub/app.yml'
