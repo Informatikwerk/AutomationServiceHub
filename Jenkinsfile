@@ -28,13 +28,14 @@ pipeline {
 		stage('Remote Build') {
 			agent any
 			steps {
-				sshagent ( ['b857f680-137f-4664-8478-c76098a49af7'] )
-				sh 'docker push localhost:5000/automationservicehub'
-				sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml eugen@192.168.175.46:/home/eugen/automation/automationservicehub/app.yml'
-				sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml eugen@192.168.175.46:/home/eugen/automation/automationservicehub/mysql.yml'
-				sh 'ssh -T -R 5000:localhost:5000 -l eugen@192.168.175.46 cd /home/eugen/automation/automationservicehub'
-				sh 'ssh -T -R 5000:localhost:5000 -l eugen@192.168.175.46 docker pull localhost:5000/automationservicehub'
-				sh 'ssh -T -R 5000:localhost:5000 -l eugen@192.168.175.46 docker-compose -f app.yml up -d'
+				sshagent (['b857f680-137f-4664-8478-c76098a49af7']) {
+					sh 'docker push localhost:5000/automationservicehub'
+					sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml eugen@192.168.175.46:/home/eugen/automation/automationservicehub/app.yml'
+					sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml eugen@192.168.175.46:/home/eugen/automation/automationservicehub/mysql.yml'
+					sh 'ssh -T -R 5000:localhost:5000 -l eugen@192.168.175.46 cd /home/eugen/automation/automationservicehub'
+					sh 'ssh -T -R 5000:localhost:5000 -l eugen@192.168.175.46 docker pull localhost:5000/automationservicehub'
+					sh 'ssh -T -R 5000:localhost:5000 -l eugen@192.168.175.46 docker-compose -f app.yml up -d'
+				}
 			}
 		}
     }
