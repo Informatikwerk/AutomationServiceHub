@@ -1,7 +1,7 @@
 version: '2'
 services:
     automationservicehub-app:
-        image: automationservicehub
+        image: localhost:5000/automationservicehub
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - SPRING_DATASOURCE_URL=jdbc:mysql://automationservicehub-mysql:3306/automationservicehub?useUnicode=true&characterEncoding=utf8&useSSL=false
