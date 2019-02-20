@@ -1,5 +1,10 @@
 pipeline {
     agent none
+	environment {
+        SSH_IP = 'jenkins@157.97.108.196'
+        SSH_PORT = '22'
+		REGISTRY = 'localhost:5000'
+    }
     stages {
         stage('Build') {
             agent {
@@ -29,11 +34,11 @@ pipeline {
 			agent { label 'master' }
 			steps {
 				sshagent (['b857f680-137f-4664-8478-c76098a49af7']) {
-					sh 'docker push localhost:5000/automationservicehub'
-					sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml eugen@192.168.175.49:/home/eugen/automation/automationservicehub/app.yml'
-					sh 'scp -r -P 22 /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml eugen@192.168.175.49:/home/eugen/automation/automationservicehub/mysql.yml'
-					sh 'ssh -T -R 5000:localhost:5000 eugen@192.168.175.49 docker pull localhost:5000/automationservicehub'
-					sh 'ssh -T -R 5000:localhost:5000 eugen@192.168.175.49 docker-compose -f /home/eugen/automation/automationservicehub/app.yml up -d'
+					sh 'docker push {REGISTRY}/automationservicehub'
+					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml ${SSH_IP}:/home/jenkins/automation/automationservicehub/app.yml'
+					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml ${SSH_IP}:/home/jenkins/automation/automationservicehub/mysql.yml'
+					sh 'ssh -T -R 5000:${REGISTRY} ${SSH_IP} docker pull {REGISTRY}/automationservicehub'
+					sh 'ssh -T -R 5000:${REGISTRY} ${SSH_IP} docker-compose -f /home/jenkins/automation/automationservicehub/app.yml up -d'
 				}
 			}
 		}
