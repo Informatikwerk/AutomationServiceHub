@@ -38,8 +38,8 @@ pipeline {
 					sh 'docker push ${REGISTRY}/automationservicehub'
 					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml ${SSH_IP}:/media/app/automation/automationservicehub/app.yml'
 					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml ${SSH_IP}:/media/app/automation/automationservicehub/mysql.yml'
-					sh 'ssh -T -R -p ${SSH_PORT} 5000:${REGISTRY} ${SSH_IP} docker pull {REGISTRY}/automationservicehub'
-					sh 'ssh -T -R -p ${SSH_PORT} 5000:${REGISTRY} ${SSH_IP} docker-compose -f /media/app/automation/automationservicehub/app.yml up -d'
+					sh 'ssh -p ${SSH_PORT} -T -R  5000:${REGISTRY} ${SSH_IP} docker pull ${REGISTRY}/automationservicehub'
+					sh 'ssh -p ${SSH_PORT} -T -R  5000:${REGISTRY} ${SSH_IP} docker-compose -f /media/app/automation/automationservicehub/app.yml up -d'
 				}
 			}
 		}
