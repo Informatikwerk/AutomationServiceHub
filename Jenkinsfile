@@ -2,7 +2,7 @@ pipeline {
     agent none
 	environment {
         SSH_IP = 'jenkins@157.97.108.196'
-        SSH_PORT = '22'
+        SSH_PORT = '2807'
 		REGISTRY = 'localhost:5000'
     }
     stages {
