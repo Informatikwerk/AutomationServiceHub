@@ -35,7 +35,7 @@ pipeline {
 			agent { label 'master' }
 			steps {
 				sshagent (['b857f680-137f-4664-8478-c76098a49af7']) {
-					sh 'docker push {REGISTRY}/automationservicehub'
+					sh 'docker push ${REGISTRY}/automationservicehub'
 					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml ${SSH_IP}:/home/jenkins/automation/automationservicehub/app.yml'
 					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml ${SSH_IP}:/home/jenkins/automation/automationservicehub/mysql.yml'
 					sh 'ssh -T -R 5000:${REGISTRY} ${SSH_IP} docker pull {REGISTRY}/automationservicehub'
