@@ -35,9 +35,11 @@ pipeline {
 			agent { label 'master' }
 			steps {
 				sshagent (['b857f680-137f-4664-8478-c76098a49af7']) {
+                    sh 'scp -r -P ${SSH_PORT} /opt/tomcat/.jenkins/workspace/automationservicehub/backup_db.sh ${SSH_IP}:/media/app/automation/automationservicehub/backup_db.sh'
+					sh 'ssh -p ${SSH_PORT} -T -R 5000:${REGISTRY} ${SSH_IP} sh /media/app/automation/automationservicehub/backup_db.sh'
 					sh 'docker push ${REGISTRY}/automationservicehub'
-					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/app.yml ${SSH_IP}:/media/app/automation/automationservicehub/app.yml'
-					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/automation/automationservicehub/src/main/docker/mysql.yml ${SSH_IP}:/media/app/automation/automationservicehub/mysql.yml'
+					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/.jenkins/workspace/automationservicehub/src/main/docker/app.yml ${SSH_IP}:/media/app/automation/automationservicehub/app.yml'
+					sh 'scp -r -P ${SSH_PORT} /opt/tomcat/.jenkins/workspace/automationservicehub/src/main/docker/mysql.yml ${SSH_IP}:/media/app/automation/automationservicehub/mysql.yml'
 					sh 'ssh -p ${SSH_PORT} -T -R  5000:${REGISTRY} ${SSH_IP} docker pull ${REGISTRY}/automationservicehub'
 					sh 'ssh -p ${SSH_PORT} -T -R  5000:${REGISTRY} ${SSH_IP} docker-compose -f /media/app/automation/automationservicehub/app.yml up -d'
 				}

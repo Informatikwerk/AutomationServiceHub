@@ -2,8 +2,8 @@ version: '2'
 services:
     automationservicehub-mysql:
         image: mysql:5.7.20
-        # volumes:
-        #     - ~/volumes/jhipster/AutomationServiceHub/mysql/:/var/lib/mysql/
+        volumes:
+            - /media/app/automation/automationservicehub/ash-mysql-data:/var/lib/mysql/
         environment:
             - MYSQL_USER=root
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
