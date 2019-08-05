@@ -3,7 +3,7 @@ services:
     automationservicehub-app:
         image: localhost:5000/automationservicehub
         environment:
-            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_PROFILES_ACTIVE=dev,swagger
             - SPRING_DATASOURCE_URL=jdbc:mysql://automationservicehub-mysql:3306/automationservicehub?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
