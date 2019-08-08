@@ -7,7 +7,7 @@
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180514222013_added_entity_LibraryRegistry.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180514222755_added_entity_Sources.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180529103907_added_entity_Nodes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190808152220_added_entity_Nodes.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180529104315_added_entity_Guis.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180529104940_added_entity_NodesMeta.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->

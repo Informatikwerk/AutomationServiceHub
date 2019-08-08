@@ -28,7 +28,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180529103907",
+    "changelogDate": "20190808152220",
     "dto": "no",
     "service": "no",
     "entityTableName": "nodes",
