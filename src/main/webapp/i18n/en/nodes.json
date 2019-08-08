@@ -18,7 +18,8 @@
             },
             "ip": "Ip",
             "realmKey": "Realm Key",
-            "type": "Type"
+            "type": "Type",
+            "name": "Name"
         }
     }
 }

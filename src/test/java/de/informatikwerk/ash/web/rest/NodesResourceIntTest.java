@@ -1,9 +1,12 @@
 package de.informatikwerk.ash.web.rest;
 
 import de.informatikwerk.ash.AutomationServiceHubApp;
+
 import de.informatikwerk.ash.domain.Nodes;
 import de.informatikwerk.ash.repository.NodesRepository;
+import de.informatikwerk.ash.service.NodesService;
 import de.informatikwerk.ash.web.rest.errors.ExceptionTranslator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static de.informatikwerk.ash.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -44,8 +48,14 @@ public class NodesResourceIntTest {
     private static final String DEFAULT_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_TYPE = "BBBBBBBBBB";
 
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
     @Autowired
     private NodesRepository nodesRepository;
+
+    @Autowired
+    private NodesService nodesService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -66,11 +76,11 @@ public class NodesResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final NodesResource nodesResource = new NodesResource(nodesRepository);
+        final NodesResource nodesResource = new NodesResource(nodesRepository, nodesService);
         this.restNodesMockMvc = MockMvcBuilders.standaloneSetup(nodesResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
-            .setConversionService(TestUtil.createFormattingConversionService())
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -84,7 +94,8 @@ public class NodesResourceIntTest {
         Nodes nodes = new Nodes()
             .ip(DEFAULT_IP)
             .realmKey(DEFAULT_REALM_KEY)
-            .type(DEFAULT_TYPE);
+            .type(DEFAULT_TYPE)
+            .name(DEFAULT_NAME);
         return nodes;
     }
 
@@ -111,6 +122,7 @@ public class NodesResourceIntTest {
         assertThat(testNodes.getIp()).isEqualTo(DEFAULT_IP);
         assertThat(testNodes.getRealmKey()).isEqualTo(DEFAULT_REALM_KEY);
         assertThat(testNodes.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testNodes.getName()).isEqualTo(DEFAULT_NAME);
     }
 
     @Test
@@ -199,7 +211,8 @@ public class NodesResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(nodes.getId().intValue())))
             .andExpect(jsonPath("$.[*].ip").value(hasItem(DEFAULT_IP.toString())))
             .andExpect(jsonPath("$.[*].realmKey").value(hasItem(DEFAULT_REALM_KEY.toString())))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
     }
 
     @Test
@@ -215,7 +228,8 @@ public class NodesResourceIntTest {
             .andExpect(jsonPath("$.id").value(nodes.getId().intValue()))
             .andExpect(jsonPath("$.ip").value(DEFAULT_IP.toString()))
             .andExpect(jsonPath("$.realmKey").value(DEFAULT_REALM_KEY.toString()))
-            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
     }
 
     @Test
@@ -240,7 +254,8 @@ public class NodesResourceIntTest {
         updatedNodes
             .ip(UPDATED_IP)
             .realmKey(UPDATED_REALM_KEY)
-            .type(UPDATED_TYPE);
+            .type(UPDATED_TYPE)
+            .name(UPDATED_NAME);
 
         restNodesMockMvc.perform(put("/api/nodes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -254,6 +269,7 @@ public class NodesResourceIntTest {
         assertThat(testNodes.getIp()).isEqualTo(UPDATED_IP);
         assertThat(testNodes.getRealmKey()).isEqualTo(UPDATED_REALM_KEY);
         assertThat(testNodes.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testNodes.getName()).isEqualTo(UPDATED_NAME);
     }
 
     @Test

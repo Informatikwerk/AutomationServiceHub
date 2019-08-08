@@ -2,6 +2,7 @@ package de.informatikwerk.ash.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import de.informatikwerk.ash.domain.Nodes;
+
 import de.informatikwerk.ash.repository.NodesRepository;
 import de.informatikwerk.ash.service.NodesService;
 import de.informatikwerk.ash.web.rest.errors.BadRequestAlertException;
@@ -91,9 +92,9 @@ public class NodesResource {
     public List<Nodes> getAllNodes() {
         log.debug("REST request to get all Nodes");
         return nodesRepository.findAll();
-    }
+        }
 
-    /**
+        /**
      * GET  /nodes : get all nodes for realmKey.
      *
      * @param realmkey the realmkey of the nodes to retrieve

@@ -6,6 +6,7 @@ export class Nodes implements BaseEntity {
         public ip?: string,
         public realmKey?: string,
         public type?: string,
+        public name?: string,
     ) {
     }
 }

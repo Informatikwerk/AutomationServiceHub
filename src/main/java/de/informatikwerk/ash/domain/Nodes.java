@@ -42,6 +42,9 @@ public class Nodes implements Serializable {
     @Column(name = "jhi_type", nullable = false)
     private String type;
 
+    @Column(name = "name")
+    private String name;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -89,6 +92,19 @@ public class Nodes implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Nodes name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -118,6 +134,7 @@ public class Nodes implements Serializable {
             ", ip='" + getIp() + "'" +
             ", realmKey='" + getRealmKey() + "'" +
             ", type='" + getType() + "'" +
+            ", name='" + getName() + "'" +
             "}";
     }
 }
