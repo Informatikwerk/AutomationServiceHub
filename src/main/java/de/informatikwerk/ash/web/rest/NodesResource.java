@@ -3,6 +3,7 @@ package de.informatikwerk.ash.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import de.informatikwerk.ash.domain.Nodes;
 import de.informatikwerk.ash.repository.NodesRepository;
+import de.informatikwerk.ash.service.NodesService;
 import de.informatikwerk.ash.web.rest.errors.BadRequestAlertException;
 import de.informatikwerk.ash.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,8 +32,11 @@ public class NodesResource {
 
     private final NodesRepository nodesRepository;
 
-    public NodesResource(NodesRepository nodesRepository) {
+    private final NodesService nodesService;
+
+    public NodesResource(NodesRepository nodesRepository, NodesService nodesService) {
         this.nodesRepository = nodesRepository;
+        this.nodesService = nodesService;
     }
 
     /**
@@ -87,7 +91,20 @@ public class NodesResource {
     public List<Nodes> getAllNodes() {
         log.debug("REST request to get all Nodes");
         return nodesRepository.findAll();
-        }
+    }
+
+    /**
+     * GET  /nodes : get all nodes for realmKey.
+     *
+     * @param realmkey the realmkey of the nodes to retrieve
+     * @return the ResponseEntity with status 200 (OK) and the list of nodes in body
+     */
+    @GetMapping("/nodesForRealmkey/{realmkey}")
+    @Timed
+    public List<Nodes> getAllNodesForRealmkey(@PathVariable String realmkey) {
+        log.debug("REST request to get all Nodes for realmkey: " + realmkey);
+        return nodesService.findAllForRealmkey(realmkey);
+    }
 
     /**
      * GET  /nodes/:id : get the "id" nodes.
