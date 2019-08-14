@@ -17,7 +17,7 @@ import { AutomationServiceHubConfigElementModule } from './config-element/config
         AutomationServiceHubSourcesModule,
         AutomationServiceHubNodesModule,
         AutomationServiceHubGuisModule,
-        AutomationServiceHubNodesMetaModule
+        AutomationServiceHubNodesMetaModule,
         AutomationServiceHubConfigElementModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
