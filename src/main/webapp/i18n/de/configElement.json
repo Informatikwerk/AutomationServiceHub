@@ -1,0 +1,23 @@
+
+{
+    "automationServiceHubApp": {
+        "configElement" : {
+            "home": {
+                "title": "Config Elements",
+                "createLabel": "Config Element erstellen",
+                "createOrEditLabel": "Config Element erstellen oder bearbeiten"
+            },
+            "created": "Config Element erstellt mit ID {{ param }}",
+            "updated": "Config Element aktualisiert mit ID {{ param }}",
+            "deleted": "Config Element gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Config Element {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Config Element"
+            },
+            "key": "Key",
+            "value": "Value"
+        }
+    }
+}

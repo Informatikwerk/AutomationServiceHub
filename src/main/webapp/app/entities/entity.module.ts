@@ -7,6 +7,7 @@ import { AutomationServiceHubNodesModule } from './nodes/nodes.module';
 import { AutomationServiceHubGuisModule } from './guis/guis.module';
 import { AutomationServiceHubNodesMetaModule } from './nodes-meta/nodes-meta.module';
 
+import { AutomationServiceHubConfigElementModule } from './config-element/config-element.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AutomationServiceHubNodesMetaModule } from './nodes-meta/nodes-meta.mod
         AutomationServiceHubNodesModule,
         AutomationServiceHubGuisModule,
         AutomationServiceHubNodesMetaModule
+        AutomationServiceHubConfigElementModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

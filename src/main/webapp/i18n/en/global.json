@@ -17,6 +17,7 @@
         "nodes": "Nodes",
         "guis": "Guis",
         "nodesMeta": "Nodes Meta",
+        "configElement": "Config Element",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

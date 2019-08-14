@@ -1,0 +1,23 @@
+
+{
+    "automationServiceHubApp": {
+        "configElement" : {
+            "home": {
+                "title": "Config Elements",
+                "createLabel": "Create a new Config Element",
+                "createOrEditLabel": "Create or edit a Config Element"
+            },
+            "created": "A new Config Element is created with identifier {{ param }}",
+            "updated": "A Config Element is updated with identifier {{ param }}",
+            "deleted": "A Config Element is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Config Element {{ id }}?"
+            },
+            "detail": {
+                "title": "Config Element"
+            },
+            "key": "Key",
+            "value": "Value"
+        }
+    }
+}
