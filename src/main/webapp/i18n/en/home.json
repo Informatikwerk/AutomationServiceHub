@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Welcome, on AutomationServiceHub!",
-    "subtitle": "AutomationServiceHub still under construction.",
+    "title": "Welcome at the AutomationServiceHub!",
+    "subtitle": "Nodes and Guis get stored here",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
