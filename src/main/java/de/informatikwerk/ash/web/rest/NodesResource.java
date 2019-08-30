@@ -74,7 +74,15 @@ public class NodesResource {
     public ResponseEntity<Nodes> updateNodes(@Valid @RequestBody Nodes nodes) throws URISyntaxException {
         log.debug("REST request to update Nodes : {}", nodes);
         if (nodes.getId() == null) {
-            return createNodes(nodes);
+            List<Nodes> nodesWithName = nodesService.findByName(nodes.getName());
+            log.debug("Checking if Node with name {} already exists...",nodes.getName());
+            if(nodesWithName != null && nodesWithName.size() > 0){
+                nodes.setId(nodesWithName.get(0).getId());
+                log.debug("...found existing Node with name {} which has the id {}",nodes.getName(),nodes.getId());
+            } else {
+                log.debug("...did not find existing Node with name {}",nodes.getName());
+                return createNodes(nodes);
+            }
         }
         Nodes result = nodesRepository.save(nodes);
         return ResponseEntity.ok()

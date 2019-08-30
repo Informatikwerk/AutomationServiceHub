@@ -51,5 +51,22 @@ public class NodesService {
         return nodes;
     }
 
+    /**
+     * Get a node by its name.
+     *
+     * @param name The name of the node
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<Nodes> findByName(String name) {
+        List<Nodes> nodes = null;
+
+        Query q = em.createNamedQuery(Nodes.QUERY_FIND_BY_NAME);
+        q.setParameter(Nodes.PARAM_NAME, name);
+        nodes = q.getResultList();
+
+        return nodes;
+    }
+
 
 }
