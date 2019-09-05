@@ -7,10 +7,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@NamedQueries({
-    @NamedQuery(name = Nodes.QUERY_FIND_BY_REALMKEY, query = "select nodes from Nodes nodes where realm_key=:" + Nodes.PARAM_REALMKEY),
-    @NamedQuery(name = Nodes.QUERY_FIND_BY_NAME, query = "select nodes from Nodes nodes where name=:" + Nodes.PARAM_NAME),
-})
 
 /**
  * A Nodes.
@@ -21,13 +17,6 @@ public class Nodes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String QUERY_FIND_BY_REALMKEY = "findNodesByRealmkey";
-    public static final String QUERY_FIND_BY_NAME = "findNodesByName";
-
-    public static final String PARAM_REALMKEY = "realm_key";
-    public static final String PARAM_NAME = "name";
-
-    public static final String[] FIELDS = { PARAM_REALMKEY, PARAM_NAME };
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

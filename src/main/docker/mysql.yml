@@ -3,7 +3,8 @@ services:
     automationservicehub-mysql:
         image: mysql:5.7.20
         volumes:
-            - /media/app/automation/automationservicehub/ash-mysql-data:/var/lib/mysql/
+            # - /media/app/automation/automationservicehub/ash-mysql-data:/var/lib/mysql/
+            - D:/volumes/ash-mysql:/var/lib/mysql/
         environment:
             - MYSQL_USER=root
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes

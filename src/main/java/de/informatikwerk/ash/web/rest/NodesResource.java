@@ -74,13 +74,14 @@ public class NodesResource {
     public ResponseEntity<Nodes> updateNodes(@Valid @RequestBody Nodes nodes) throws URISyntaxException {
         log.debug("REST request to update Nodes : {}", nodes);
         if (nodes.getId() == null) {
-            List<Nodes> nodesWithName = nodesService.findByName(nodes.getName());
-            log.debug("Checking if Node with name {} already exists...",nodes.getName());
-            if(nodesWithName != null && nodesWithName.size() > 0){
-                nodes.setId(nodesWithName.get(0).getId());
-                log.debug("...found existing Node with name {} which has the id {}",nodes.getName(),nodes.getId());
+            List<Nodes> nodesWithNameAndRealmkey = nodesService.findByNameAndRealmkey(nodes.getName(),nodes.getRealmKey());
+        
+            log.debug("Checking if Node with name {} and Realmkey {} already exists...",nodes.getName(), nodes.getRealmKey());
+            if(nodesWithNameAndRealmkey != null && nodesWithNameAndRealmkey.size() > 0){
+                nodes.setId(nodesWithNameAndRealmkey.get(0).getId());
+                log.debug("...found existing Node with name {}  and Realmkey {} which has the id {}",nodes.getName(), nodes.getRealmKey(), nodes.getId());
             } else {
-                log.debug("...did not find existing Node with name {}",nodes.getName());
+                log.debug("...did not find existing Node with name {} and Realmkey {} ",nodes.getName(), nodes.getRealmKey());
                 return createNodes(nodes);
             }
         }

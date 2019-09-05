@@ -42,13 +42,7 @@ public class NodesService {
      */
     @Transactional(readOnly = true)
     public List<Nodes> findAllForRealmkey(String realmkey) {
-        List<Nodes> nodes = null;
-
-        Query q = em.createNamedQuery(Nodes.QUERY_FIND_BY_REALMKEY);
-        q.setParameter(Nodes.PARAM_REALMKEY, realmkey);
-        nodes = q.getResultList();
-
-        return nodes;
+       return nodesRepository.findAllForRealmkey(realmkey);
     }
 
     /**
@@ -58,14 +52,8 @@ public class NodesService {
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public List<Nodes> findByName(String name) {
-        List<Nodes> nodes = null;
-
-        Query q = em.createNamedQuery(Nodes.QUERY_FIND_BY_NAME);
-        q.setParameter(Nodes.PARAM_NAME, name);
-        nodes = q.getResultList();
-
-        return nodes;
+    public List<Nodes> findByNameAndRealmkey(String name, String realmkey) {
+        return nodesRepository.findByNameAndRealmkey(name, realmkey);
     }
 
 
